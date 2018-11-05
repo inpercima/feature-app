@@ -16,6 +16,10 @@ This project was generated with [swaaplate](https://github.com/inpercima/swaapla
   * `npm 5.6.0` or higher or
   * `yarn 1.7.0` or higher, used in this repository
 
+### Angular CLI
+
+* `angular-cli 7.0.2` or higher
+
 ## Getting started
 
 ```bash
@@ -34,15 +38,21 @@ yarn
 
 ```bash
 # build in devMode
-yarn run build:dev
+yarn build:dev
 
 # build in prodMode, compressed
-yarn run build:prod
+yarn build:prod
 
 # build in devMode and start a server, rebuild after changes
-yarn run serve
+yarn serve
 # open result in browser
 http://localhost:4200/
+
+# test
+ng test
+
+# e2e
+ng e2e
 ```
 
 ## Configuration
@@ -114,3 +124,5 @@ Name of a build-in theme from angular-material.
 * default: `indigo-pink`
 * type: `string`
 * values: `deeppurple-amber`/`indigo-pink`/`pink-bluegrey`/`purple-green`
+
+Note: This option must also be changed in the angular.json if you want to change it after cloning the project.
