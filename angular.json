@@ -25,6 +25,8 @@
             "styles": [
               "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/web/app/app.component.css",
+              "src/web/app/features/member/member.component.css",
+              "src/web/app/features/post/post.component.css",
               "src/web/styles.css"
             ],
             "scripts": []
@@ -83,6 +85,8 @@
             "styles": [
               "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/web/app/app.component.css",
+              "src/web/app/features/member/member.component.css",
+              "src/web/app/features/post/post.component.css",
               "src/web/styles.css"
             ],
             "scripts": [],

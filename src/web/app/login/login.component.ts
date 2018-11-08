@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -9,7 +9,7 @@ import { ConfigService } from '../core/config.service';
   selector: 'fa-login',
   templateUrl: './login.component.html',
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
 
@@ -19,10 +19,9 @@ export class LoginComponent {
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private configService: ConfigService,
     private router: Router) {
-    this.createForm();
   }
 
-  createForm() {
+  ngOnInit() {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],

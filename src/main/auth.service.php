@@ -9,10 +9,10 @@ class AuthService {
   /**
    * Simulate a simple login authentication.
    * @param string $query
-   */ 
+   */
   public function authenticate($query) {
     $result = 'Username or password is incorrect.';
-    if ($query == 'authenticate' && $_POST['username'] == 'inpercima' && $_POST['password'] == 'inpercima') {
+    if ($query == 'authenticate' && $_POST['username'] == 'inpercima' && $_POST['password'] == 'feature-app') {
       $result = $this->generateToken($_POST['username']);
     }
     return json_encode($result);
@@ -21,7 +21,7 @@ class AuthService {
   /**
    * Generate a simple jwt to authenticate.
    * @param string $username
-   */ 
+   */
   function generateToken($username) {
     $header = $this->base64url_encode(json_encode(array('alg' => 'HS256', 'typ' => 'JWT')));
     $iat = time();
