@@ -12,6 +12,9 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin([{
       from: './src/main',
+    }, {
+      // workaround: https://github.com/inpercima/angular-cli-for-swaaplate/issues/7
+      from: './src/web/favicon.ico',
     }]),
   ],
 }
