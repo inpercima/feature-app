@@ -62,7 +62,7 @@
   "scripts": {
     "build:dev": "ng lint && ng build",
     "build:prod": "ng lint && ng build --prod",
-    "serve": "ng serve -o"
+    "watch": "ng build --watch"
   },
   "version": "0.0.1-SNAPSHOT"
 }

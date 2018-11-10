@@ -43,10 +43,10 @@ yarn build:dev
 # build in prodMode, compressed
 yarn build:prod
 
-# build in devMode and start a server, rebuild after changes
-yarn serve
+# build in devMode, rebuild after changes
+yarn watch
 # open result in browser
-http://localhost:4200/
+http://localhost:<path/to/dist/
 
 # test
 ng test
