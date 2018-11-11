@@ -13,10 +13,15 @@ import { CoreModule } from './core/core.module';
 import { FeaturesModule } from './features/features.module';
 import { LoginModule } from './login/login.module';
 import { NotFoundModule } from './not-found/not-found.module';
+import { registerLocaleData } from '@angular/common';
+import localeDe from '@angular/common/locales/de';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
 }
+
+// the second parameter 'de' is optional
+registerLocaleData(localeDe, 'de');
 
 @NgModule({
   bootstrap: [
