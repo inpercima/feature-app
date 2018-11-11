@@ -2,18 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { of } from 'rxjs';
 
-import { environment } from 'src/web/environments/environment';
-import * as post from './post.json';
+import { ConfigService } from '../../core/config.service';
 
 @Injectable()
 export class PostService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private configService: ConfigService) { }
 
   public list(): Observable<any> {
-    return environment.mode === 'nonedb' ? of(post.posts) : this.http.get<any>('./post.handler.php');
+    return this.http.get<any>(this.configService.getApi() + '/posts');
   }
 
   public delete(): void {

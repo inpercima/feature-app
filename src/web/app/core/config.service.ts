@@ -7,6 +7,8 @@ export class ConfigService {
 
   private activateLogin: boolean;
 
+  private api: string;
+
   private appname: string;
 
   private defaultRoute: string;
@@ -21,6 +23,7 @@ export class ConfigService {
 
   constructor() {
     this.activateLogin = (<any>config).routes.login.activate;
+    this.api = (<any>config).api;
     this.appname = (<any>config).appname;
     this.defaultRoute = (<any>config).routes.default;
     this.redirectNotFound = (<any>config).routes.notFound.redirect;
@@ -31,6 +34,10 @@ export class ConfigService {
 
   public isActivateLogin() {
     return this.activateLogin;
+  }
+
+  public getApi() {
+    return this.api;
   }
 
   public getAppname() {

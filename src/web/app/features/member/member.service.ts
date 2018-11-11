@@ -1,21 +1,18 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { of } from 'rxjs';
 
-import { environment } from '../../../environments/environment';
+import { ConfigService } from '../../core/config.service';
 import { Member } from './member';
-import * as member from './member.json';
 
 @Injectable()
 export class MemberService {
 
-  constructor() { }
+  constructor(private http: HttpClient, private configService: ConfigService) { }
 
   public list(): Observable<Member[]> {
-    if (environment.mode === 'nonedb') {
-      return of(member.members);
-    }
+    return this.http.get<any>(this.configService.getApi() + '/members');
   }
 
 }

@@ -64,6 +64,7 @@ All options have to bet set but some of them do not need to be changed.
 ### Table of contents
 
 * [appname](#appname)
+* [api](#api)
 * [routes/default](#routesdefault)
 * [routes/features/show](#routesfeaturesshow)
 * [routes/login/activate](#routesloginactivate)
@@ -77,6 +78,20 @@ Applicationwide title of the app, displayed in title and toolbar.
 
 * default: `feature-app`
 * type: `string`
+
+### `api`
+
+The url to the server.
+
+* default: `http://localhost:3000`
+* type: `string`
+
+By default this url links to an json-server which needs to be started before.
+Do this with:
+
+```bash
+yarn json
+```
 
 ### `routes/default`
 

@@ -1,0 +1,36 @@
+{
+  "members": [
+    {
+      "name": "Jason",
+      "username": "instaJason"
+    },
+    {
+      "name": "Brian",
+      "username": "instaBrian"
+    },
+    {
+      "name": "Steve",
+      "username": "instaSteve"
+    }
+  ],
+  "notes": [
+    {
+      "member": "Steve",
+      "text": "This is a simple note."
+    }
+  ],
+  "posts": [
+    {
+      "date": "2018-11-05",
+      "photoby": "instagram"
+    },
+    {
+      "date": "2018-11-06",
+      "photoby": "ig_leipzig"
+    },
+    {
+      "date": "2018-11-07",
+      "photoby": "ig_deutschland"
+    }
+  ]
+}

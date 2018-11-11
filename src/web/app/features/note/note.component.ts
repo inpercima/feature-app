@@ -3,10 +3,10 @@ import { DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { Member } from '../member/member';
 import { MemberService } from '../member/member.service';
 import { NoteService } from './note.service';
 import { Note } from './note';
-import { Member } from '../member/member';
 
 @Component({
   selector: 'fa-note',
