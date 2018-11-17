@@ -15,8 +15,18 @@
   ],
   "notes": [
     {
+      "id": 1,
+      "date": "2018-11-17",
       "member": "Steve",
+      "title": "first note",
       "text": "This is a simple note."
+    },
+    {
+      "id": 2,
+      "date": "2018-11-17",
+      "member": "Brian",
+      "title": "easy way",
+      "text": "Another note to show how easy this is."
     }
   ],
   "posts": [

@@ -21,7 +21,7 @@ export class NoteService {
   public save(formGroup: FormGroup): Observable<boolean> {
     const body = this.formService.createBody(formGroup);
     const header = this.formService.createHeader();
-    return this.http.post<boolean>('./note.handler.php', body, header).pipe(map(response => {
+    return this.http.post<boolean>(this.configService.getApi() + '/notes', body, header).pipe(map(response => {
       return response !== null && response;
     }));
   }

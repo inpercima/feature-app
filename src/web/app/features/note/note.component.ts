@@ -11,6 +11,7 @@ import { Note } from './note';
 @Component({
   selector: 'fa-note',
   templateUrl: './note.component.html',
+  styles: ['./note.component.css'],
 })
 export class NoteComponent implements OnInit {
 
