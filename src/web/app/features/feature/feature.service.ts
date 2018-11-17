@@ -11,7 +11,7 @@ export class FeatureService {
   constructor(private http: HttpClient, private configService: ConfigService) { }
 
   public checkUser(username: string): Observable<any> {
-    return this.http.get<any>(`${this.configService.getApi()}/feature?username=${username}`);
+    return this.http.get<any>(`${this.configService.getApi()}/posts?photographer=${username}`);
   }
 
 }

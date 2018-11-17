@@ -18,7 +18,7 @@ import { MemberService } from '../member/member.service';
 })
 export class FeatureComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, public snackBar: MatSnackBar, private adminService: AdminService,
+  constructor(private formBuilder: FormBuilder, private snackBar: MatSnackBar, private adminService: AdminService,
     private memberService: MemberService, private featureService: FeatureService) { }
 
   protected date: Date;
@@ -45,30 +45,29 @@ export class FeatureComponent implements OnInit {
     this.adminService.listAll().subscribe(admin => {
       this.admin = admin;
       this.filteredPhotographer = this.featureForm.get('photographer').valueChanges.pipe(startWith(''), map(value => {
-        return this.admin.photographer.filter(photographer => photographer.toLowerCase().includes(value.toLowerCase()));
-      }));
-      this.filteredPhotographer = this.featureForm.get('photographer').valueChanges.pipe(startWith(''), map(value => {
-        return this.admin.photographer.filter(photographer => photographer.toLowerCase().includes(value.toLowerCase()));
+        return this.admin.photographer.split(',').filter(photographer => photographer.toLowerCase().includes(value.toLowerCase()));
       }));
       this.filteredLocations = this.featureForm.get('location').valueChanges.pipe(startWith(''), map(value => {
-        return this.admin.locations.filter(location => location.toLowerCase().includes(value.toLowerCase()));
+        return this.admin.locations.split(',').filter(location => location.toLowerCase().includes(value.toLowerCase()));
       }));
       this.memberService.list().subscribe(members => {
         this.members = members;
         members.forEach(member => this.membersAsString += `@${member.username} `);
+        this.membersAsString = this.membersAsString.trim();
       });
     });
   }
 
   openSnackBar() {
     this.snackBar.open('copied to clipboard', '', {
-      duration: 1000,
+      duration: 2000,
     });
   }
 
   usedUserValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
-      return this.featureService.checkUser(control.value).pipe(map(value => value.length ? { 'featured': true } : { 'featured': false }));
+      // return null to show there is no error
+      return this.featureService.checkUser(control.value).pipe(map(value => value.length ? { 'featured': true } : null));
     };
   }
 
