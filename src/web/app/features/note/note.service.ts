@@ -15,13 +15,13 @@ export class NoteService {
   constructor(private formService: FormService, private http: HttpClient, private configService: ConfigService) { }
 
   public list(): Observable<Note[]> {
-    return this.http.get<Note[]>(this.configService.getApi() + '/notes');
+    return this.http.get<Note[]>(`${this.configService.getApi()}/notes`);
   }
 
   public save(formGroup: FormGroup): Observable<boolean> {
     const body = this.formService.createBody(formGroup);
     const header = this.formService.createHeader();
-    return this.http.post<boolean>(this.configService.getApi() + '/notes', body, header).pipe(map(response => {
+    return this.http.post<boolean>(`${this.configService.getApi()}/notes`, body, header).pipe(map(response => {
       return response !== null && response;
     }));
   }

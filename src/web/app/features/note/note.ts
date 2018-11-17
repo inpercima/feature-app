@@ -1,5 +1,7 @@
 export interface Note {
 
+  id: number;
+
   date: string;
 
   member: string;
