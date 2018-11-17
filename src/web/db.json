@@ -1,5 +1,6 @@
 {
-  "members": [{
+  "members": [
+    {
       "id": 1,
       "name": "Jason",
       "username": "instaJason"
@@ -13,8 +14,10 @@
       "id": 3,
       "name": "Steve",
       "username": "instaSteve"
-    }],
-  "notes": [{
+    }
+  ],
+  "notes": [
+    {
       "id": 1,
       "date": "2018-11-17",
       "member": "Steve",
@@ -27,8 +30,10 @@
       "member": "Brian",
       "title": "easy way",
       "text": "Another note to show how easy this is."
-    }],
-  "posts": [{
+    }
+  ],
+  "posts": [
+    {
       "id": 1,
       "date": "2018-11-05",
       "photographer": "instagram"
@@ -42,13 +47,14 @@
       "id": 3,
       "date": "2018-11-07",
       "photographer": "ig_deutschland"
-    }],
+    }
+  ],
   "admin": {
-    "featuredTag": "igers",
     "accountName": "instagram",
+    "featuredTag": "igers",
     "dateTag": "universe",
-    "tags": "#mytag #myothertag #instagramtag #ig_tag #ig_tag_two",
-    "locations": ["London", "Berlin", "Rom", "Paris"],
-    "photographer": ["Brian_on_instagram", "steve_photos", "jason_germany_photo"]
+    "locations": "London,Berlin,Rom,Paris",
+    "photographer": "Brian_on_instagram,steve_photos,jason_germany_photo",
+    "tags": "#mytag #myothertag #instagramtag #ig_tag #ig_tag_two"
   }
 }

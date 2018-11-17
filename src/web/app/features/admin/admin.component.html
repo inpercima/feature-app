@@ -1,3 +1,33 @@
-<p>
-  admin works!
-</p>
+<div fxLayout="row">
+  <div fxFlex="10%" fxFlex.gt-xs="20%"></div>
+  <mat-card fxFlex class="card">
+    <mat-card-content>
+      <form [formGroup]="adminForm" (ngSubmit)="onSubmit()" novalidate>
+        <div fxLayout="row" fxLayout.lt-md="column">
+          <mat-form-field fxFlex>
+            <input matInput placeholder="account name" formControlName="accountName" required>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+              <input matInput placeholder="featured tag" formControlName="featuredTag" required>
+            </mat-form-field>
+          <mat-form-field fxFlex>
+            <input matInput placeholder="date tag" formControlName="dateTag" required>
+          </mat-form-field>
+        </div>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="locations" formControlName="locations" required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="photographer" formControlName="photographer" required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="tags" formControlName="tags" required>
+        </mat-form-field>
+        <div fxLayout="row">
+          <button fxFlex type="submit" class="full-width" mat-raised-button color="primary" [disabled]="adminForm.invalid">Save</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <div fxFlex="10%" fxFlex.gt-xs="20%"></div>
+</div>

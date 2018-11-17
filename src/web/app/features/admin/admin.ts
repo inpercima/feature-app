@@ -6,9 +6,9 @@ export interface Admin {
 
   dateTag: string;
 
-  locations: string[];
+  locations: string;
 
-  photographer: string[];
+  photographer: string;
 
   tags: string;
 
