@@ -46,7 +46,7 @@ yarn build:prod
 # build in devMode, rebuild after changes
 yarn watch
 # open result in browser
-http://localhost:<path/to/dist/
+http://localhost/<path/to/dist/
 
 # test
 ng test
