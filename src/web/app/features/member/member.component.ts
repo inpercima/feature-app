@@ -11,9 +11,9 @@ import { MemberService } from './member.service';
 })
 export class MemberComponent implements OnInit {
 
-  public displayedColumns: string[] = ['name', 'username'];
+  protected displayedColumns: string[] = ['name', 'username'];
 
-  public dataSource = new MatTableDataSource();
+  protected dataSource = new MatTableDataSource();
 
   constructor(private memberService: MemberService) { }
 
