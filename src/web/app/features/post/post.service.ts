@@ -4,14 +4,15 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ConfigService } from '../../core/config.service';
+import { Post } from './post';
 
 @Injectable()
 export class PostService {
 
   constructor(private http: HttpClient, private configService: ConfigService) { }
 
-  public list(): Observable<any> {
-    return this.http.get<any>(this.configService.getApi() + '/posts');
+  public list(): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.configService.getApi()}/posts`);
   }
 
   public delete(): void {

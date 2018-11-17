@@ -11,7 +11,7 @@ import { PostService } from './post.service';
 })
 export class PostComponent implements OnInit {
 
-  public displayedColumns: string[] = ['date', 'photoby'];
+  public displayedColumns: string[] = ['date', 'photographer'];
 
   public dataSource = new MatTableDataSource();
 
