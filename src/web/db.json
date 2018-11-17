@@ -1,14 +1,17 @@
 {
   "members": [
     {
+      "id": 1,
       "name": "Jason",
       "username": "instaJason"
     },
     {
+      "id": 2,
       "name": "Brian",
       "username": "instaBrian"
     },
     {
+      "id": 3,
       "name": "Steve",
       "username": "instaSteve"
     }
@@ -31,16 +34,19 @@
   ],
   "posts": [
     {
+      "id": 1,
       "date": "2018-11-05",
-      "photoby": "instagram"
+      "photographer": "instagram"
     },
     {
+      "id": 2,
       "date": "2018-11-06",
-      "photoby": "ig_leipzig"
+      "photographer": "ig_leipzig"
     },
     {
+      "id": 3,
       "date": "2018-11-07",
-      "photoby": "ig_deutschland"
+      "photographer": "ig_deutschland"
     }
   ]
 }
