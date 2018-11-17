@@ -1,3 +1,64 @@
-<p>
-  feature works!
-</p>
+<div fxLayout="row">
+    <div fxFlex="10%" fxFlex.gt-xs="20%"></div>
+    <mat-card fxFlex class="card">
+      <mat-card-content>
+        <form [formGroup]="featureForm" novalidate>
+          <div fxLayout="row" fxLayout.lt-md="column">
+            <mat-form-field fxFlex>
+              <input matInput placeholder="photographer" formControlName="photographer" [matAutocomplete]="autocompletePhotographer">
+              <mat-autocomplete #autocompletePhotographer="matAutocomplete">
+                <mat-option *ngFor="let photographer of filteredPhotographer | async" [value]="photographer">{{ photographer }}</mat-option>
+              </mat-autocomplete>
+              <mat-error *ngIf="featureForm.get('photographer').errors && featureForm.get('photographer').errors.userExists">The user is used in last 60 posts</mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex>
+              <input matInput placeholder="location" formControlName="location" [matAutocomplete]="autocompleteLocation">
+              <mat-autocomplete #autocompleteLocation="matAutocomplete">
+                <mat-option *ngFor="let location of filteredLocations | async" [value]="location">{{ location }}</mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field fxFlex>
+              <mat-select placeholder="member" formControlName="member">
+                <mat-option *ngFor="let member of members" [value]="member.username">{{ member.username }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <mat-form-field class="full-width">
+              <textarea matInput readonly placeholder="feature" #copyToClipboard class="featureText">present
+
+I G  O F  T H E  D A Y
+
+P H O T O | @{{ featureForm.get('photographer').value }}
+
+L O C A T I O N | {{ featureForm.get('location').value }}
+
+_________________________________________
+
+S E L E C T E D | @{{ featureForm.get('member').value }}
+
+T E A M | {{ membersAsString }}
+
+F E A T U R E D  T A G | #{{ admin.featuredTag }}
+
+M A I L | igworldclub@gmail.com
+S O C I A L | Facebook • Twitter
+M E M B E R S | @igworldclub_officialaccount
+
+C O U N T R Y  R E Q U I R E D | If you want to join us and open an igworldclub account of your country or city, please write us or go to www.igworldclub.it
+
+F O L L O W  U S | @IGWORLDCLUB @{{ admin.accountName }}
+
+Powered by | T H E  .  H U B
+
+#igworldclub_country #igworldclub_award #igworldclub_member #ig_countryaward #shotaward #gang_family #all_shots #travelblog #insta_crew #ig_captures #photolocker
+
+{{ admin.tags }}
+
+#{{ admin.dateTag }}{{ date | date: 'yyyy' }} #instagramersofthemonth_{{ date | date: 'MMMM' | lowercase }} #igd{{ date | date: 'MMddyy' }}</textarea>
+            </mat-form-field>
+            <button mat-raised-button (click)="openSnackBar()" color="primary" class="full-width" [ngxClipboard]="copyToClipboard">create feature & copy to clipboard</button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+      <div fxFlex="10%" fxFlex.gt-xs="20%"></div>
+    </div>
