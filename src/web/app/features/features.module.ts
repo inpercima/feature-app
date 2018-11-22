@@ -16,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AdminComponent } from './admin/admin.component';
 import { AdminService } from './admin/admin.service';
 import { CalendarComponent } from './calendar/calendar.component';
+import { CalendarService } from './calendar/calendar.service';
 import { FeaturesRoutingModule } from './features-routing.module';
 import { FeatureComponent } from './feature/feature.component';
 import { FeatureService } from './feature/feature.service';
@@ -53,6 +54,7 @@ import { PostService } from './post/post.service';
   ],
   providers: [
     AdminService,
+    CalendarService,
     FeatureService,
     MemberService,
     NoteService,

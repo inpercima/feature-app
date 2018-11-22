@@ -10,6 +10,8 @@ export interface Admin {
 
   photographer: string;
 
+  startDate: string;
+
   tags: string;
 
 }
