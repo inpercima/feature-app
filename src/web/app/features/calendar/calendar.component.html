@@ -1,3 +1,37 @@
-<p>
-  calendar works!
-</p>
+<div fxLayout="row">
+  <div fxFlex="10%" fxFlex.gt-xs="20%"></div>
+  <mat-card fxFlex *ngIf="!isSelected" class="card">
+    <div *ngFor="let item of calendar">
+      <button mat-button (click)="changeMember(item)">
+        <span *ngIf="!item.isChanged">
+          {{ item.date }} {{ item.member }}
+        </span>
+        <span ngClass="representativeMember" *ngIf="item.isChanged">
+          {{ item.date }} {{ item.representativeMember }} (regular {{ item.member }})
+        </span>
+      </button>
+    </div>
+  </mat-card>
+  <mat-card fxFlex *ngIf="isSelected" class="card">
+    <form [formGroup]="calendarForm" (ngSubmit)="onSubmit()" novalidate>
+      <div fxLayout="row" fxLayout.lt-md="column">
+        <mat-form-field fxFlex>
+          <input matInput placeholder="date" formControlName="date" readonly>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <input matInput placeholder="member" formControlName="member" readonly>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-select placeholder="representative member" formControlName="representativeMember" required>
+            <mat-option *ngFor="let member of members" [value]="member.username">{{ member.username }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign.column="space-between stretch">
+        <button fxFlex mat-raised-button (click)="isSelected=false">Cancel</button>
+        <button fxFlex type="submit" mat-raised-button color="primary" [disabled]="calendarForm.invalid">Save</button>
+      </div>
+    </form>
+  </mat-card>
+  <div fxFlex="10%" fxFlex.gt-xs="20%"></div>
+</div>

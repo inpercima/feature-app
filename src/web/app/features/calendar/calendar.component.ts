@@ -3,12 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Calendar } from './calendar';
 import { CalendarService } from './calendar.service';
-import { MemberService } from '../member/member.service';
 import { Member } from '../member/member';
+import { MemberService } from '../member/member.service';
 
 @Component({
   selector: 'fa-calendar',
   templateUrl: './calendar.component.html',
+  styles: ['./calendar.component.css'],
 })
 
 export class CalendarComponent implements OnInit {
@@ -43,10 +44,10 @@ export class CalendarComponent implements OnInit {
   }
 
   createCalendar(): void {
-    this.calendarService.createCalendar().subscribe(result => this.calendar = result);
+   this.calendarService.createCalendar().subscribe(result => this.calendar = result);
   }
 
-  changeSelector(item: Calendar) {
+  changeMember(item: Calendar) {
     this.isSelected = true;
     this.calendarForm.setValue({ member: item.member, date: item.date, representativeMember: '' });
   }
