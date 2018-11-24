@@ -2,12 +2,12 @@
   <div fxFlex="10%" fxFlex.gt-xs="20%"></div>
   <mat-card fxFlex *ngIf="!isSelected" class="card">
     <div *ngFor="let item of calendar">
-      <button mat-button (click)="changeMember(item)">
+      <button mat-button (click)="item.isChanged ? openDialog(item) : changeMember(item)">
+        <span *ngIf="item.isChanged" ngClass="representativeMember">
+          {{ item.date }} {{ item.representativeMember }} (regular {{ item.member }})
+        </span>
         <span *ngIf="!item.isChanged">
           {{ item.date }} {{ item.member }}
-        </span>
-        <span ngClass="representativeMember" *ngIf="item.isChanged">
-          {{ item.date }} {{ item.representativeMember }} (regular {{ item.member }})
         </span>
       </button>
     </div>

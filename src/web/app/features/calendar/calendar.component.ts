@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material';
 
 import { Calendar } from './calendar';
 import { CalendarService } from './calendar.service';
+import { DialogComponent } from './dialog/dialog.component';
 import { Member } from '../member/member';
 import { MemberService } from '../member/member.service';
 
@@ -22,7 +24,8 @@ export class CalendarComponent implements OnInit {
 
   protected isSelected: boolean;
 
-  constructor(private formBuilder: FormBuilder, private calendarService: CalendarService, private memberService: MemberService) { }
+  constructor(private formBuilder: FormBuilder, private calendarService: CalendarService, private memberService: MemberService,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.memberService.list().subscribe(members => this.members = members);
@@ -35,16 +38,18 @@ export class CalendarComponent implements OnInit {
   }
 
   onSubmit() {
-    this.calendarService.save(this.calendarForm).subscribe(result => {
-      if (result) {
-        this.createCalendar();
-        this.isSelected = false;
-      }
-    });
+    this.calendarService.save(this.calendarForm).subscribe(result => this.checkCreation(result));
   }
 
   createCalendar(): void {
-   this.calendarService.createCalendar().subscribe(result => this.calendar = result);
+    this.calendarService.createCalendar().subscribe(result => this.calendar = result);
+  }
+
+  checkCreation(create: boolean) {
+    if (create) {
+      this.createCalendar();
+      this.isSelected = false;
+    }
   }
 
   changeMember(item: Calendar) {
@@ -52,13 +57,18 @@ export class CalendarComponent implements OnInit {
     this.calendarForm.setValue({ member: item.member, date: item.date, representativeMember: '' });
   }
 
-  revert(date: string) {
-    this.calendarService.revert(date).subscribe(result => {
-      if (result) {
-        this.createCalendar();
-        this.isSelected = false;
-      }
-    });
+  revert(id: number) {
+    this.calendarService.revert(id).subscribe(result => this.checkCreation(result));
   }
+
+  openDialog(item: Calendar): void {
+    const dialogRef = this.dialog.open(DialogComponent, { width: '300px' });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.revert(item.id);
+      }
+      this.checkCreation(result);
+  });
+}
 
 }

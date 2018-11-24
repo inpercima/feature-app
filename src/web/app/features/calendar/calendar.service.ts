@@ -38,6 +38,7 @@ export class CalendarService {
           if (response.length) {
             response.forEach(function (value) {
               if (value.date === item.date) {
+                item.id = value.id;
                 item.isChanged = true;
                 item.representativeMember = value.representativeMember;
               }
@@ -101,8 +102,8 @@ export class CalendarService {
     }));
   }
 
-  public revert(date: string): Observable<boolean> {
-    return this.http.delete<boolean>(`${environment.api}calendar${environment.apiSuffix}date=${date}`).pipe(map(response => {
+  public revert(id: number): Observable<boolean> {
+    return this.http.delete<boolean>(`${environment.api}calendar${environment.apiSuffix}/${id}`).pipe(map(response => {
       return response !== null && response;
     }));
   }
