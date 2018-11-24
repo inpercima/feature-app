@@ -5,23 +5,22 @@ import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { ConfigService } from '../../core/config.service';
 import { FormService } from '../../core/form.service';
 import { Note } from './note';
+
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class NoteService {
 
-  constructor(private formService: FormService, private http: HttpClient, private configService: ConfigService) { }
+  constructor(private formService: FormService, private http: HttpClient) { }
 
   public list(): Observable<Note[]> {
-    return this.http.get<Note[]>(`${this.configService.getApi()}/notes`);
+    return this.http.get<Note[]>(`${environment.api}notes${environment.apiSuffix}`);
   }
 
   public save(formGroup: FormGroup): Observable<boolean> {
-    const body = this.formService.createBody(formGroup);
-    const header = this.formService.createHeader();
-    return this.http.post<boolean>(`${this.configService.getApi()}/notes`, body, header).pipe(map(response => {
+    return this.http.post<boolean>(`${environment.api}notes${environment.apiSuffix}`, formGroup.value).pipe(map(response => {
       return response !== null && response;
     }));
   }

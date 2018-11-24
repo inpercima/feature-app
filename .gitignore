@@ -1,11 +1,11 @@
-# begin project specific
+# project specific
 
-src/web/config.json
 swaaplate-backup.json
 
-# end project specific
+# end of project specific
 
 # Created by https://www.gitignore.io/api/node,angular,eclipse,intellij+all,visualstudiocode
+# Edit at https://www.gitignore.io/?templates=node,angular,eclipse,intellij+all,visualstudiocode
 
 ### Angular ###
 ## Angular ##
@@ -264,6 +264,9 @@ typings/
 # Serverless directories
 .serverless
 
+# FuseBox cache
+.fusebox/
+
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
@@ -271,5 +274,8 @@ typings/
 !.vscode/launch.json
 !.vscode/extensions.json
 
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
 
 # End of https://www.gitignore.io/api/node,angular,eclipse,intellij+all,visualstudiocode

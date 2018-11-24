@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import * as config from '../../config.json';
 import { AuthGuard } from '../core/auth-guard.service';
 import { AdminComponent } from './admin/admin.component';
 import { CalendarComponent } from './calendar/calendar.component';
@@ -10,10 +9,12 @@ import { MemberComponent } from './member/member.component';
 import { NoteComponent } from './note/note.component';
 import { PostComponent } from './post/post.component';
 
+import { environment } from '../../environments/environment';
+
 const routes: Routes = [{
   canActivate: [AuthGuard],
   component: FeatureComponent,
-  path: (<any>config).routes.default,
+  path: environment.defaultRoute,
 }, {
   canActivate: [AuthGuard],
   component: PostComponent,

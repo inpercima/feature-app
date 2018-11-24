@@ -3,15 +3,15 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { ConfigService } from '../../core/config.service';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class FeatureService {
 
-  constructor(private http: HttpClient, private configService: ConfigService) { }
+  constructor(private http: HttpClient) { }
 
   public checkUser(username: string): Observable<any> {
-    return this.http.get<any>(`${this.configService.getApi()}/posts?photographer=${username}`);
+    return this.http.get<any>(`${environment.api}posts${environment.apiSuffix}?photographer=${username}`);
   }
 
 }

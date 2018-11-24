@@ -3,16 +3,17 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { ConfigService } from '../../core/config.service';
 import { Post } from './post';
+
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class PostService {
 
-  constructor(private http: HttpClient, private configService: ConfigService) { }
+  constructor(private http: HttpClient) { }
 
   public list(): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.configService.getApi()}/posts`);
+    return this.http.get<Post[]>(`${environment.api}posts${environment.apiSuffix}`);
   }
 
   public delete(): void {

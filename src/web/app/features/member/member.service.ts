@@ -3,16 +3,17 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { ConfigService } from '../../core/config.service';
 import { Member } from './member';
+
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class MemberService {
 
-  constructor(private http: HttpClient, private configService: ConfigService) { }
+  constructor(private http: HttpClient) { }
 
   public list(): Observable<Member[]> {
-    return this.http.get<any>(this.configService.getApi() + '/members');
+    return this.http.get<Member[]>(`${environment.api}members${environment.apiSuffix}`);
   }
 
 }

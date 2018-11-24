@@ -4,8 +4,8 @@
 
 export const environment = {
   activateLogin: true,
-  api: 'http://localhost:3000/',
-  apiSuffix: '',
+  api: './',
+  apiSuffix: '.php',
   appname: 'feature-app',
   defaultRoute: 'feature',
   production: false,

@@ -18,7 +18,7 @@ This project was generated with [swaaplate](https://github.com/inpercima/swaapla
 
 ### Angular CLI
 
-* `angular-cli 7.0.2` or higher
+* `angular-cli 7.0.6` or higher
 
 ## Getting started
 
@@ -36,22 +36,61 @@ yarn
 
 ## Usage
 
+### Recommendation
+
+It is recommanded to use a server to get full access of all angular.
+You can do this for example with `yarn serve:dev`.
+For the other options your app should run on a server which you like.
+
+### DevMode with mock data
+
+Start in a separate terminal a server with mock data, reachable on [http://localhost:3000/](http://localhost:3000/).
+
 ```bash
-# build in devMode
+yarn mock:dev
+```
+
+Chose one of the following to work in devMode with mock data.
+
+```bash
+# build, reachable on http://localhost/app/path/to/dist/
 yarn build:dev
 
+# build and starts a server, rebuild after changes, reachable on http://localhost:4200/
+yarn serve:dev
+
+# build, rebuild after changes, reachable on http://localhost/app/path/to/dist/
+yarn watch:dev
+```
+
+### DevMode with real data, if present
+
+```bash
+# build, reachable on http://localhost/app/path/to/dist/
+yarn build:stage
+
+# build, rebuild after changes, reachable on http://localhost/app/path/to/dist/
+yarn watch:stage
+```
+
+### ProdMode
+
+```bash
 # build in prodMode, compressed
 yarn build:prod
+```
 
-# build in devMode, rebuild after changes
-yarn watch
-# open result in browser
-http://localhost/<path/to/dist/
+### Tests
 
+```bash
 # test
 ng test
 
 # e2e
+# WORKAROUND
+# before running ng e2e you need to run following line to download webdriver
+node_modules/protractor/bin/webdriver-manager update
+
 ng e2e
 ```
 
@@ -59,18 +98,44 @@ ng e2e
 
 ### General
 
-All options have to bet set but some of them do not need to be changed.
+All options have to bet set in the environment files but some of them do not need to be changed.
+All defaults refer to the development environment file (`environment.ts`).
+All deviations are described in addition as `staging` and `production`.
 
 ### Table of contents
 
-* [appname](#appname)
+* [activateLogin](#activateLogin)
 * [api](#api)
-* [routes/default](#routesdefault)
-* [routes/features/show](#routesfeaturesshow)
-* [routes/login/activate](#routesloginactivate)
-* [routes/login/show](#routesloginshow)
-* [routes/notFound/redirect](#routesnotfoundredirect)
+* [apiSuffix](#apiSuffix)
+* [appname](#appname)
+* [defaultRoute](#defaultRoute)
+* [production](#production)
+* [redirectNotFound](#redirectNotFound)
+* [showFeatures](#showFeatures)
+* [showLogin](#showLogin)
 * [theme](#theme)
+
+### `activateLogin`
+
+Defines whether a login will be used or not.
+
+* default: `true`
+* type: `boolean`
+* values: `true`/`false`
+
+### `api`
+
+Defines the URL to the backend.
+
+* default: `http://localhost:3000/` | staging: `./` | production: `./`
+* type: `string`
+
+### `apiSuffix`
+
+Defines a suffix for the api to the backend.
+
+* default: `EMPTY` | staging: `EMPTY` | production: `EMPTY`
+* type: `string`
 
 ### `appname`
 
@@ -79,28 +144,30 @@ Applicationwide title of the app, displayed in title and toolbar.
 * default: `feature-app`
 * type: `string`
 
-### `api`
-
-The url to the server.
-
-* default: `http://localhost:3000`
-* type: `string`
-
-By default this url links to an json-server which needs to be started before.
-Do this with:
-
-```bash
-yarn json
-```
-
-### `routes/default`
+### `defaultRoute`
 
 The main route and the redirect route after login if no route is stored.
 
 * default: `feature`
 * type: `string`
 
-### `routes/features/show`
+### `production`
+
+Defines whether the app is in production or not.
+
+* default: `false` | staging: `false` | production: `true`
+* type: `boolean`
+* values: `true`/`false`
+
+### `redirectNotFound`
+
+Defines whether the 404 route will redirect to the default route or not.
+
+* default: `false`
+* type: `boolean`
+* values: `true`/`false`
+
+### `showFeatures`
 
 Defines whether feature routes will be displayed or not.
 
@@ -108,25 +175,9 @@ Defines whether feature routes will be displayed or not.
 * type: `boolean`
 * values: `true`/`false`
 
-### `routes/login/activate`
-
-Defines whether a login will be used or not.
-
-* default: `true`
-* type: `boolean`
-* values: `true`/`false`
-
-### `routes/login/show`
+### `showLogin`
 
 Defines whether login route will be displayed or not.
-
-* default: `false`
-* type: `boolean`
-* values: `true`/`false`
-
-### `routes/notFound/redirect`
-
-Defines whether the 404 route will redirect to the default route or not.
 
 * default: `false`
 * type: `boolean`
@@ -140,4 +191,4 @@ Name of a build-in theme from angular-material.
 * type: `string`
 * values: `deeppurple-amber`/`indigo-pink`/`pink-bluegrey`/`purple-green`
 
-Note: This option must also be changed in the angular.json if you want to change it after cloning the project.
+Note: This option must also be changed in the angular.json if you want to change it.

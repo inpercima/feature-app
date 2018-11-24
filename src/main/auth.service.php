@@ -8,12 +8,14 @@ class AuthService {
 
   /**
    * Simulate a simple login authentication.
-   * @param string $query
    */
-  public function authenticate($query) {
-    $result = 'Username or password is incorrect.';
-    if ($query == 'authenticate' && $_POST['username'] == 'inpercima' && $_POST['password'] == 'feature-app') {
-      $result = $this->generateToken($_POST['username']);
+  public function authenticate() {
+    $request = json_decode(file_get_contents("php://input"));
+    $result = array('message' => 'Username or password is incorrect');
+    if ($request->username == 'feature-app' && $request->password == 'feature-app') {
+      $result = array('token' => $this->generateToken($request->username));
+    } else {
+      http_response_code(400);
     }
     return json_encode($result);
   }
