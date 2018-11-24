@@ -25,6 +25,7 @@
             "styles": [
               "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/web/app/app.component.css",
+              "src/web/app/features/calendar/calendar.component.css",
               "src/web/app/features/feature/feature.component.css",
               "src/web/app/features/member/member.component.css",
               "src/web/app/features/note/note.component.css",
@@ -111,6 +112,7 @@
             "styles": [
               "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/web/app/app.component.css",
+              "src/web/app/features/calendar/calendar.component.css",
               "src/web/app/features/feature/feature.component.css",
               "src/web/app/features/member/member.component.css",
               "src/web/app/features/note/note.component.css",

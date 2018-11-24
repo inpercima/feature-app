@@ -22,6 +22,7 @@ export class AdminComponent implements OnInit {
       locations: ['', Validators.required],
       photographer: ['', Validators.required],
       tags: ['', Validators.required],
+      startDate: ['', Validators.required],
     });
     this.adminService.listAll().subscribe(response => {
       this.adminForm.get('accountName').setValue(response.accountName);
@@ -30,6 +31,7 @@ export class AdminComponent implements OnInit {
       this.adminForm.get('locations').setValue(response.locations);
       this.adminForm.get('photographer').setValue(response.photographer);
       this.adminForm.get('tags').setValue(response.tags);
+      this.adminForm.get('startDate').setValue(response.startDate);
     });
   }
 
