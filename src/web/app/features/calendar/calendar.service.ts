@@ -31,7 +31,7 @@ export class CalendarService {
         let index = this.getStartIndex(days);
         for (let i = 0; i < 60; i++) {
           index = this.getIndex(index);
-          const user = this.members.find(member => member.id === index);
+          const user = this.members.find(member => Number(member.id) === index);
           index++;
           const item: Calendar = this.createCalendarItem(calendarDate, user);
           calendarDate = this.updateDate(calendarDate);

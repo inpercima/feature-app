@@ -19,10 +19,10 @@ class NoteService {
     $pdo = connect();
 
     $stmt = $pdo->prepare('INSERT INTO fa_note (member, date, title, text) VALUES (:member, :date, :title, :text)');
-    $stmt->bindParam(':member', $data['member']);
-    $stmt->bindParam(':date', $data['date']);
-    $stmt->bindParam(':title', $data['title']);
-    $stmt->bindParam(':text', $data['text']);
+    $stmt->bindParam(':member', $data->member);
+    $stmt->bindParam(':date', $data->date);
+    $stmt->bindParam(':title', $data->title);
+    $stmt->bindParam(':text', $data->text);
     return json_encode($stmt->execute());
   }
 

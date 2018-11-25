@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../core/auth.service';
+import { PostService } from '../features/post/post.service';
+
 import { environment } from '../../environments/environment';
 
 @Component({
@@ -19,7 +21,8 @@ export class LoginComponent implements OnInit {
 
   protected message: string;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private postService: PostService,
+    private router: Router) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -31,6 +34,9 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.authService.login(this.loginForm).subscribe(() => {
       if (this.isAuthenticated()) {
+        this.postService.save().subscribe(() => {
+          this.postService.delete();
+        });
         this.wrongLogin = false;
         this.message = '';
         // get the redirect URL from auth service

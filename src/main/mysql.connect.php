@@ -1,10 +1,10 @@
 <?php
 
 // db credentials
-define('DB_HOST', 'dbHost');
-define('DB_USER', 'dbUser');
-define('DB_PASS', 'dbPassword');
-define('DB_NAME', 'dbName');
+define('DB_HOST', 'mysql');
+define('DB_USER', 'root');
+define('DB_PASS', 'password');
+define('DB_NAME', 'fa_demo');
 
 // connect with the database
 function connect() {

@@ -2,7 +2,7 @@
 require_once 'mysql.connect.php';
 require_once 'instagram.service.php';
 
-class PostsService {
+class PostService {
 
   /**
    * constructor
@@ -12,7 +12,7 @@ class PostsService {
   public function listAll() {
     $pdo = connect();
 
-    $stmt = $pdo->query('SELECT photoby, date FROM fa_post ORDER BY date DESC');
+    $stmt = $pdo->query('SELECT photographer, date FROM fa_post ORDER BY date DESC');
     return json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
   }
 
@@ -28,20 +28,24 @@ class PostsService {
   }
 
   public function save() {
-    $instagramService = new InstagramService();
-    $posts = json_decode($instagramService->getJson('ig_leipzig'));
     $pdo = connect();
 
+    $stmtQuery = $pdo->query('SELECT accountName FROM fa_admin WHERE id = 1');
+    $accountName = $stmtQuery->fetchColumn();
+
+    $instagramService = new InstagramService();
+    $posts = json_decode($instagramService->getJson($accountName));
+
     foreach ($posts as $post) {
-      $stmt = $pdo->prepare('SELECT COUNT(*) FROM fa_post WHERE date = :date');
+      $stmtQuery = $pdo->prepare('SELECT COUNT(*) FROM fa_post WHERE date = :date');
       $date = date('Y-m-d', $post->date);
-      $stmt->bindParam(':date', $date);
-      $stmt->execute();
+      $stmtQuery->bindParam(':date', $date);
+      $stmtQuery->execute();
       // $stmt->rowCount() funktioniert nicht auf mysql bzw. ist nicht garantiert
-      if ($stmt->fetchColumn() == 0) {
-        $stmt = $pdo->prepare('INSERT INTO fa_post (date, photoby) VALUES (:date, :photoby)');
+      if ($stmtQuery->fetchColumn() == 0) {
+        $stmt = $pdo->prepare('INSERT INTO fa_post (date, photographer) VALUES (:date, :photographer)');
         $stmt->bindParam(':date', $date);
-        $stmt->bindParam(':photoby', $post->photo);
+        $stmt->bindParam(':photographer', $post->photographer);
         $stmt->execute();
       }
     }

@@ -17,11 +17,11 @@ export class PostService {
   }
 
   public delete(): void {
-    this.http.delete('./post.handler.php').subscribe();
+    this.http.delete(`${environment.api}post${environment.apiSuffix}`).subscribe();
   }
 
   public save(): Observable<boolean> {
-    return this.http.post<boolean>('./post.handler.php', {});
+    return this.http.post<boolean>(`${environment.api}post${environment.apiSuffix}`, {});
   }
 
 }
