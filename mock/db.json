@@ -15,7 +15,7 @@
       "representativeMember": "Brian"
     }
   ],
-  "members": [
+  "member": [
     {
       "id": 1,
       "name": "Jason",
@@ -32,7 +32,7 @@
       "username": "instaSteve"
     }
   ],
-  "notes": [
+  "note": [
     {
       "id": 1,
       "date": "2018-11-17",
@@ -48,7 +48,7 @@
       "text": "Another note to show how easy this is."
     }
   ],
-  "posts": [
+  "post": [
     {
       "id": 1,
       "date": "2018-11-05",
@@ -65,7 +65,7 @@
       "photographer": "ig_deutschland"
     }
   ],
-  "users": [
+  "user": [
     {
       "id": 1,
       "username": "feature-app",

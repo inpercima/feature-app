@@ -16,11 +16,11 @@ export class NoteService {
   constructor(private formService: FormService, private http: HttpClient) { }
 
   public list(): Observable<Note[]> {
-    return this.http.get<Note[]>(`${environment.api}notes${environment.apiSuffix}`);
+    return this.http.get<Note[]>(`${environment.api}note${environment.apiSuffix}`);
   }
 
   public save(formGroup: FormGroup): Observable<boolean> {
-    return this.http.post<boolean>(`${environment.api}notes${environment.apiSuffix}`, formGroup.value).pipe(map(response => {
+    return this.http.post<boolean>(`${environment.api}note${environment.apiSuffix}`, formGroup.value).pipe(map(response => {
       return response !== null && response;
     }));
   }

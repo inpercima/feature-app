@@ -13,7 +13,7 @@ export class PostService {
   constructor(private http: HttpClient) { }
 
   public list(): Observable<Post[]> {
-    return this.http.get<Post[]>(`${environment.api}posts${environment.apiSuffix}`);
+    return this.http.get<Post[]>(`${environment.api}post${environment.apiSuffix}`);
   }
 
   public delete(): void {

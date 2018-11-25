@@ -1,16 +1,16 @@
 <?php
 require_once 'post.service.php';
 
-$postsService = new PostsService();
+$postService = new PostService();
 
 switch ($_SERVER['REQUEST_METHOD']) {
   case 'GET':
-    echo $postsService->listAll();
+    echo $postService->listAll();
     break;
   case 'DELETE':
-    echo $postsService->delete();
+    echo $postService->delete();
   case 'POST':
-    echo $postsService->save();
+    echo $postService->save();
     break;
   default:
     break;

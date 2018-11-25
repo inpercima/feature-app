@@ -13,7 +13,7 @@ export class MemberService {
   constructor(private http: HttpClient) { }
 
   public list(): Observable<Member[]> {
-    return this.http.get<Member[]>(`${environment.api}members${environment.apiSuffix}?_sort=id`);
+    return this.http.get<Member[]>(`${environment.api}member${environment.apiSuffix}?_sort=id`);
   }
 
 }
