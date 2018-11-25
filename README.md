@@ -6,7 +6,9 @@
 
 Administrate and manage features on an account like ig_* on instagram.
 
-This project was generated with [swaaplate](https://github.com/inpercima/swaaplate).
+A demo version is online under [feature-app.inpercima.net](http://publicmedia.inpercima.net) with username = password = **feature-app**.
+
+This project was generated with [swaaplate 0.2.0](https://github.com/inpercima/swaaplate).
 
 ## Prerequisites
 
@@ -134,7 +136,7 @@ Defines the URL to the backend.
 
 Defines a suffix for the api to the backend.
 
-* default: `EMPTY` | staging: `EMPTY` | production: `EMPTY`
+* default: `EMPTY` | staging: `.php` | production: `.php`
 * type: `string`
 
 ### `appname`
