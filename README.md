@@ -6,7 +6,7 @@
 
 Administrate and manage features on an account like ig_* on instagram.
 
-A demo version is online under [feature-app.inpercima.net](http://publicmedia.inpercima.net) with username = password = **feature-app**.
+A demo version is online under [feature-app.inpercima.net](http://feature-app.inpercima.net) with username = password = **feature-app**.
 
 This project was generated with [swaaplate 0.2.0](https://github.com/inpercima/swaaplate).
 
