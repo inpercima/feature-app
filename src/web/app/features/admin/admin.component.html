@@ -14,7 +14,9 @@
             <input matInput placeholder="date tag" formControlName="dateTag" required>
           </mat-form-field>
           <mat-form-field fxFlex>
-              <input matInput placeholder="start date" formControlName="startDate" required>
+              <input matInput [matDatepicker]="picker" placeholder="start date" formControlName="startDate" required>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker touchUi #picker></mat-datepicker>
             </mat-form-field>
         </div>
         <mat-form-field class="full-width">

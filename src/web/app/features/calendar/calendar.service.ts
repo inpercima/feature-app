@@ -74,7 +74,7 @@ export class CalendarService {
   private createCalendarItem(date: Date, member: Member): Calendar {
     const item = {} as Calendar;
     item.member = member.username;
-    item.date = date.toLocaleDateString('de-DE', { weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit' });
+    item.date = date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit' });
     return item;
   }
 

@@ -16,7 +16,7 @@ export class NoteService {
   constructor(private formService: FormService, private http: HttpClient) { }
 
   public list(): Observable<Note[]> {
-    return this.http.get<Note[]>(`${environment.api}note${environment.apiSuffix}`);
+    return this.http.get<Note[]>(`${environment.api}note${environment.apiSuffix}?_sort=id&_order=desc`);
   }
 
   public save(formGroup: FormGroup): Observable<boolean> {

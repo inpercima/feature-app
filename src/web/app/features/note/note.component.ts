@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -21,6 +21,10 @@ export class NoteComponent implements OnInit {
 
   protected notes: Note[];
 
+  private datePipe = new DatePipe('en-US');
+
+  private now = this.datePipe.transform(Date.now(), 'MM/dd/yyyy');
+
   constructor(private formBuilder: FormBuilder, private noteService: NoteService, private memberService: MemberService,
     private snackBar: MatSnackBar) { }
 
@@ -29,7 +33,7 @@ export class NoteComponent implements OnInit {
       member: ['', Validators.required],
       title: ['', Validators.required],
       text: ['', Validators.required],
-      date: [new DatePipe('de').transform(Date.now(), 'yyyy-MM-dd'), Validators.required],
+      date: [this.now, Validators.required],
     });
 
     this.memberService.list().subscribe(result => this.members = result);
@@ -37,7 +41,9 @@ export class NoteComponent implements OnInit {
   }
 
   onSubmit() {
+    this.noteForm.get('date').setValue(this.datePipe.transform(this.noteForm.get('date').value, 'yyyy-MM-dd'));
     this.noteService.save(this.noteForm).subscribe(() => {
+      this.noteForm.get('date').setValue(this.now);
       this.loadNotes();
       this.openSnackBar();
     });

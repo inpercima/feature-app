@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -10,9 +11,11 @@ import { AdminService } from './admin.service';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private adminService: AdminService, private snackBar: MatSnackBar) { }
-
   protected adminForm: FormGroup;
+
+  private datePipe = new DatePipe('en-US');
+
+  constructor(private formBuilder: FormBuilder, private adminService: AdminService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.adminForm = this.formBuilder.group({
@@ -36,7 +39,14 @@ export class AdminComponent implements OnInit {
   }
 
   onSubmit() {
-    this.adminService.save(this.adminForm).subscribe(() => this.openSnackBar());
+    const startDate = this.adminForm.get('startDate');
+    if (startDate.valid) {
+      startDate.setValue(this.datePipe.transform(startDate.value, 'yyyy-MM-dd'));
+    }
+    this.adminService.save(this.adminForm).subscribe(() => {
+      startDate.setValue(new Date(startDate.value).toISOString());
+      this.openSnackBar();
+    });
   }
 
   openSnackBar() {
