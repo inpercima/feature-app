@@ -11,3 +11,7 @@ body {
 .full-width {
   width: 100%;
 }
+
+.mat-tab-link {
+  min-width: 50px !important;
+}

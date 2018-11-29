@@ -1,6 +1,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgModule } from '@angular/core';
@@ -13,7 +14,6 @@ import { CoreModule } from './core/core.module';
 import { FeaturesModule } from './features/features.module';
 import { LoginModule } from './login/login.module';
 import { NotFoundModule } from './not-found/not-found.module';
-import { registerLocaleData } from '@angular/common';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -41,6 +41,7 @@ export function tokenGetter() {
       }
     }),
     LoginModule,
+    FlexLayoutModule,
     MatTabsModule,
     MatToolbarModule,
     NotFoundModule,
