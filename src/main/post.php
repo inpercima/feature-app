@@ -9,6 +9,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
     break;
   case 'DELETE':
     echo $postService->delete();
+    break;
   case 'POST':
     echo $postService->save();
     break;
