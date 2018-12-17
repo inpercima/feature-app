@@ -16,6 +16,16 @@ class PostService {
     return json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
   }
 
+  public function checkPhotographer($query) {
+    parse_str($query, $queryArr);
+    $pdo = connect();
+
+    $stmt = $pdo->prepare('SELECT photographer FROM fa_post WHERE photographer = :photographer LIMIT 1');
+    $stmt->bindParam(':photographer', $queryArr['photographer']);
+    $stmt->execute();
+    return json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+  }
+
   public function delete() {
     $pdo = connect();
 

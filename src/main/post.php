@@ -5,7 +5,12 @@ $postService = new PostService();
 
 switch ($_SERVER['REQUEST_METHOD']) {
   case 'GET':
-    echo $postService->listAll();
+    $query = $_SERVER['QUERY_STRING'];
+    if (strpos($query, 'photographer') !== false) {
+      echo $postService->checkPhotographer($query);
+    } else {
+      echo $postService->listAll();
+    }
     break;
   case 'DELETE':
     echo $postService->delete();
