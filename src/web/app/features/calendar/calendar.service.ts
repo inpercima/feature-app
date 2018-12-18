@@ -25,9 +25,9 @@ export class CalendarService {
     this.memberService.list().subscribe(members => this.members = members);
     return this.http.get<Calendar[]>(`${environment.api}calendar${environment.apiSuffix}`).pipe(map(response => {
       const calendar: Calendar[] = [];
-      const currentDateMidnigh = this.getDateMidnight(true, null);
-      this.daysBetween(currentDateMidnigh).subscribe(days => {
-        let calendarDate = currentDateMidnigh;
+      const currentDateMidnight = this.getDateMidnight(true, null);
+      this.daysBetween(currentDateMidnight).subscribe(days => {
+        let calendarDate = currentDateMidnight;
         let index = this.getStartIndex(days);
         for (let i = 0; i < 60; i++) {
           index = this.getIndex(index);
