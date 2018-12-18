@@ -56,7 +56,7 @@ export class CalendarService {
    */
   private daysBetween(currentDate: Date): Observable<number> {
     return this.adminService.listAll().pipe(map(response => {
-      const startDate = this.getDateMidnight(false, response.startDate);
+      const startDate = this.getDateMidnight(false, response.startDate.replace(/-/g, '/'));
       return Math.round(Math.abs((startDate.getTime() - currentDate.getTime()) / this.ONE_DAY));
     }));
   }
