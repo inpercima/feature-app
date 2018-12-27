@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { JwtModule } from '@auth0/angular-jwt';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { MatCardModule } from '@angular/material/card';
@@ -12,6 +12,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { CoreModule } from '../core/core.module';
 import { LoginComponent } from './login.component';
+import { PostService } from '../features/post/post.service';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -24,7 +25,7 @@ describe('LoginComponent', () => {
       ],
       imports: [
         CoreModule,
-        HttpClientModule,
+        HttpClientTestingModule,
         JwtModule.forRoot({
           config: {
             tokenGetter: () => {
@@ -42,6 +43,7 @@ describe('LoginComponent', () => {
       ],
       providers: [
         JwtHelperService,
+        PostService,
       ],
     })
     .compileComponents();

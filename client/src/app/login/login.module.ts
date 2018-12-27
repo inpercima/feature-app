@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { LoginComponent } from './login.component';
 import { LoginRoutingModule } from './login-routing.module';
+import { PostService } from '../features/post/post.service';
 
 @NgModule({
   declarations: [
@@ -26,5 +27,8 @@ import { LoginRoutingModule } from './login-routing.module';
     MatInputModule,
     ReactiveFormsModule,
   ],
+  providers: [
+    PostService,
+  ]
 })
 export class LoginModule { }
