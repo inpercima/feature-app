@@ -8,7 +8,7 @@ Administrate and manage features on an account like ig_* on instagram.
 
 A demo version is online under [feature-app.inpercima.net](http://feature-app.inpercima.net) with username = password = **feature-app**.
 
-This project was generated with [swaaplate 0.2.0](https://github.com/inpercima/swaaplate).
+This project was generated with [swaaplate](https://github.com/inpercima/swaaplate) version 0.3.0.
 
 ## Prerequisites
 
@@ -20,7 +20,7 @@ This project was generated with [swaaplate 0.2.0](https://github.com/inpercima/s
 
 ### Angular CLI
 
-* `angular-cli 7.0.6` or higher
+* `angular-cli 7.1.4` or higher
 
 ## Getting started
 
@@ -29,10 +29,8 @@ This project was generated with [swaaplate 0.2.0](https://github.com/inpercima/s
 git clone https://github.com/inpercima/feature-app
 cd feature-app
 
-# copy src/config.default.json to src/config.json
-cp src/config.default.json src/config.json
-
 # install tools and frontend dependencies
+cd client
 yarn
 ```
 
@@ -41,7 +39,7 @@ yarn
 ### Recommendation
 
 It is recommanded to use a server to get full access of all angular.
-You can do this for example with `yarn serve:dev`.
+You can do this for example with `yarn serve:mock`.
 For the other options your app should run on a server which you like.
 
 ### DevMode with mock data
@@ -49,30 +47,30 @@ For the other options your app should run on a server which you like.
 Start in a separate terminal a server with mock data, reachable on [http://localhost:3000/](http://localhost:3000/).
 
 ```bash
-yarn mock:dev
+yarn run:mock
 ```
 
 Chose one of the following to work in devMode with mock data.
 
 ```bash
 # build, reachable on http://localhost/app/path/to/dist/
-yarn build:dev
+yarn build:mock
 
 # build and starts a server, rebuild after changes, reachable on http://localhost:4200/
-yarn serve:dev
+yarn serve:mock
 
 # build, rebuild after changes, reachable on http://localhost/app/path/to/dist/
-yarn watch:dev
+yarn watch:mock
 ```
 
 ### DevMode with real data, if present
 
 ```bash
 # build, reachable on http://localhost/app/path/to/dist/
-yarn build:stage
+yarn build:dev
 
 # build, rebuild after changes, reachable on http://localhost/app/path/to/dist/
-yarn watch:stage
+yarn watch:dev
 ```
 
 ### ProdMode
@@ -89,10 +87,6 @@ yarn build:prod
 ng test
 
 # e2e
-# WORKAROUND
-# before running ng e2e you need to run following line to download webdriver
-node_modules/protractor/bin/webdriver-manager update
-
 ng e2e
 ```
 
@@ -102,7 +96,7 @@ ng e2e
 
 All options have to bet set in the environment files but some of them do not need to be changed.
 All defaults refer to the development environment file (`environment.ts`).
-All deviations are described in addition as `staging` and `production`.
+All deviations are described in addition as `mock` and `production`.
 
 ### Table of contents
 
@@ -129,14 +123,14 @@ Defines whether a login will be used or not.
 
 Defines the URL to the backend.
 
-* default: `http://localhost:3000/` | staging: `./` | production: `./`
+* default: `./api/` | mock: `http://localhost:3000/` | production: `./api/`
 * type: `string`
 
 ### `apiSuffix`
 
 Defines a suffix for the api to the backend.
 
-* default: `EMPTY` | staging: `.php` | production: `.php`
+* default: EMPTY
 * type: `string`
 
 ### `appname`
@@ -157,7 +151,7 @@ The main route and the redirect route after login if no route is stored.
 
 Defines whether the app is in production or not.
 
-* default: `false` | staging: `false` | production: `true`
+* default: `false` | mock: `false` | production: `true`
 * type: `boolean`
 * values: `true`/`false`
 

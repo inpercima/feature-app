@@ -9,12 +9,12 @@ module.exports = {
     crypto: true,
     stream: true,
   },
-  plugins: [
+  plugins: [ process.env.NODE_ENV !== 'mock' ?
     new CopyWebpackPlugin([{
-      from: './src/main',
+      from: '../api/src/main',
+      to: './api',
     }, {
-      // workaround: https://github.com/inpercima/angular-cli-for-swaaplate/issues/7
-      from: './src/web/favicon.ico',
-    }]),
+      from: 'src/favicon.ico',
+    }]) : {},
   ],
 }

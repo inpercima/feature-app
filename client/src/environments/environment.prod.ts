@@ -1,7 +1,7 @@
 export const environment = {
   activateLogin: true,
-  api: './',
-  apiSuffix: '.php',
+  api: './api/',
+  apiSuffix: '',
   appname: 'feature-app',
   defaultRoute: 'feature',
   production: true,
