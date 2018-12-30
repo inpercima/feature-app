@@ -17,7 +17,7 @@ export class PostService {
   }
 
   public delete(): void {
-    this.http.delete(`${environment.api}post${environment.apiSuffix}`).subscribe();
+    this.http.delete(`${environment.api}post${environment.apiSuffix}/0`).subscribe();
   }
 
   public save(): Observable<boolean> {

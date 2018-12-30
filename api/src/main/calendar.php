@@ -11,7 +11,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
     echo $calendarService->save(json_decode(file_get_contents('php://input')));
     break;
   case 'DELETE':
-    echo $calendarService->delete(explode('/', trim($_SERVER['PATH_INFO'],'/'))[0]);
+    $id = substr($_SERVER['REQUEST_URI'], strrpos($_SERVER['REQUEST_URI'], '/') + 1);
+    echo $calendarService->delete($id);
     break;
   default:
     break;
