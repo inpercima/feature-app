@@ -15,7 +15,7 @@ import { FeaturesModule } from './features/features.module';
 import { LoginModule } from './login/login.module';
 import { NotFoundModule } from './not-found/not-found.module';
 
-export function tokenGetter() {
+export function getToken() {
   return localStorage.getItem('access_token');
 }
 
@@ -36,7 +36,7 @@ export function tokenGetter() {
     HttpClientModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: tokenGetter,
+        tokenGetter: getToken,
         whitelistedDomains: ['localhost'],
       }
     }),
