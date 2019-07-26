@@ -26,7 +26,7 @@ export class NoteComponent implements OnInit {
   private now = this.datePipe.transform(Date.now(), 'MM/dd/yyyy');
 
   constructor(private formBuilder: FormBuilder, private noteService: NoteService, private memberService: MemberService,
-    private snackBar: MatSnackBar) { }
+              private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.noteForm = this.formBuilder.group({

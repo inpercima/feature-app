@@ -36,7 +36,7 @@ export class CalendarService {
           const item: Calendar = this.createCalendarItem(calendarDate, user);
           calendarDate = this.updateDate(calendarDate);
           if (response.length) {
-            response.forEach(function (value) {
+            response.forEach(value => {
               if (value.date === item.date) {
                 item.id = value.id;
                 item.isChanged = true;

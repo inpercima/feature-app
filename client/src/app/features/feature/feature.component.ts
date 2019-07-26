@@ -19,7 +19,7 @@ import { MemberService } from '../member/member.service';
 export class FeatureComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private snackBar: MatSnackBar, private adminService: AdminService,
-    private memberService: MemberService, private featureService: FeatureService) { }
+              private memberService: MemberService, private featureService: FeatureService) { }
 
   protected date: Date;
 
@@ -67,7 +67,7 @@ export class FeatureComponent implements OnInit {
   usedUserValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
       // return null to show there is no error
-      return this.featureService.checkUser(control.value).pipe(map(value => value.length ? { 'featured': true } : null));
+      return this.featureService.checkUser(control.value).pipe(map(value => value.length ? { featured: true } : null));
     };
   }
 

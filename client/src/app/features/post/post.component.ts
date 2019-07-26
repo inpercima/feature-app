@@ -17,7 +17,7 @@ export class PostComponent implements OnInit {
 
   constructor(private postService: PostService) { }
 
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
 
   ngOnInit() {
     this.postService.list().subscribe(data => this.dataSource.data = data);

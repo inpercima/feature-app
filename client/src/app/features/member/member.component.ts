@@ -17,7 +17,7 @@ export class MemberComponent implements OnInit {
 
   constructor(private memberService: MemberService) { }
 
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
 
   ngOnInit() {
     this.memberService.list().subscribe(data => this.dataSource.data = data);

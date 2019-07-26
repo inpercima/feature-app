@@ -25,7 +25,7 @@ export class CalendarComponent implements OnInit {
   protected isSelected: boolean;
 
   constructor(private formBuilder: FormBuilder, private calendarService: CalendarService, private memberService: MemberService,
-    public dialog: MatDialog) { }
+              public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.memberService.list().subscribe(members => this.members = members);

@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   protected message: string;
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private postService: PostService,
-    private router: Router) { }
+              private router: Router) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
