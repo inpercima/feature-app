@@ -1,0 +1,50 @@
+{
+  "general": {
+    "author": "Marcel Jänicke",
+    "description": "Administrate and manage features on an account like ig_* on instagram.",
+    "github": {
+      "use": true,
+      "username": "inpercima"
+    },
+    "name": "feature-app",
+    "title": "feature-app",
+    "useDocker": false
+  },
+  "client": {
+    "buildDir": "dist",
+    "installDependencies": true,
+    "packageJson": {
+      "contributors": [{
+        "name": "Marcel Jänicke",
+        "email": "inpercima@gmail.com"
+      }],
+      "homepage": "http://feature-app.inpercima.net",
+      "repository": "https://github.com/inpercima/feature-app"
+    },
+    "route": {
+      "features": {
+        "default": "feature",
+        "show": true
+      },
+      "login": {
+        "activate": true,
+        "name": "login",
+        "show": false
+      },
+      "notFound": {
+        "name": "not-found",
+        "redirect": false
+      }
+    },
+    "selectorPrefix": "fa",
+    "theme": "indigo-pink",
+    "useYarn": true
+  },
+  "server": {
+    "backend": "php",
+    "htaccess": true,
+    "management": "",
+    "packagePath": "",
+    "serverAsApi": true
+  }
+}

@@ -1,4 +1,4 @@
-# swaaplate - api
+# feature-app - api
 
 ## Getting started
 
