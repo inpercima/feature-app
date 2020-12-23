@@ -4,13 +4,13 @@
 
 Administrate and manage features on an account like ig_* on instagram.
 
-This project was generated with [swaaplate](https://github.com/inpercima/swaaplate) version 1.1.0.
+This project was generated with [swaaplate](https://github.com/inpercima/swaaplate) version 2.1.0.
 
 ## Prerequisites
 
 ### Angular CLI
 
-* `angular-cli 8.3.23` or higher
+* `angular-cli 11.0.5` or higher
 
 ### Apache and php
 
@@ -19,21 +19,19 @@ This project was generated with [swaaplate](https://github.com/inpercima/swaapla
 
 ### Node, npm or yarn
 
-* `node 12.14.1` or higher in combination with
-  * `npm 6.13.4` or higher or
-  * `yarn 1.21.1` or higher, used in this repository
+* `node 12.19.0` or higher in combination with
+  * `npm 6.14.8` or higher or
+  * `yarn 1.22.5` or higher, used in this repository
 
 ## Dependency check
 
 Some libraries could not be updated b/c of peer dependencies or knowing issues.
 
-| library    | current version | wanted version | reason |
-| ---------- | --------------- | -------------- | ------ |
-| copy-webpack-plugin | 4.6.0 | 5.1.1 | copy-webpack-plugin@5.1.1" has unmet peer dependency "webpack@^4.0.0 || ^5.0.0" |
-| zone.js    | 0.9.1           | 0.10.2         | @angular/core@8.2.14" has incorrect peer dependency "zone.js@~0.9.1" |
-| typescript | 3.5.3           | 3.7.5          | @angular-devkit/build-angular@0.803.23" has incorrect peer dependency "typescript@>=3.1 < 3.6 |
-| typescript | 3.5.3           | 3.7.5          | @angular-devkit/build-angular > @ngtools/webpack@8.3.23" has incorrect peer dependency "typescript@>=3.4 < 3.6 |
-| typescript | 3.5.3           | 3.7.5          | @angular/compiler-cli@8.2.14" has incorrect peer dependency "typescript@>=3.4 <3.6 |
+| library             | current version | wanted version | reason |
+| ------------------- | --------------- | -------------- | ------ |
+| copy-webpack-plugin | 4.6.0           | 7.0.0          | copy-webpack-plugin@7.0.0" has unmet peer dependency "webpack@^5.1.0" |
+| typescript          | 4.0.5           | 4.1.3          | @angular-devkit/build-angular@0.1100.5" has incorrect peer dependency "typescript@~4.0.0" |
+| zone.js             | 0.10.3          | 0.11.3         | @angular/core@11.0.5" has incorrect peer dependency "zone.js@~0.10.3" |
 
 ## Getting started
 
@@ -47,6 +45,6 @@ cd feature-app
 
 ### Modules
 
-For the client check [feature-app - client](https://github.com/inpercima/feature-app/tree/master/client).
+For the client check [feature-app - client](./client).
 
-For the api check [feature-app - api](https://github.com/inpercima/feature-app/tree/master/api).
+For the server check [feature-app - api](./api).

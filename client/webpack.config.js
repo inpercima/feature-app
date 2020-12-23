@@ -4,12 +4,14 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 // explanation: https://github.com/meltedspark/angular-builders/issues/235#issuecomment-464393504
 // workaround: https://github.com/meltedspark/angular-builders/issues/235#issuecomment-471323007
 module.exports = (config, options) => {
+  const invertedMode = process.env.NODE_ENV === 'prod' ? 'dev' : 'prod';
   config.plugins.push(
     process.env.NODE_ENV !== 'mock' ?
       new CopyWebpackPlugin([{
         from: '../api/src/main',
         to: './api',
-      }]) : {},
+        ignore: ['config.default.php', `config.${invertedMode}.php`],
+      }]) : {}
   );
   return config;
 }

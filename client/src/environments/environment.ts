@@ -3,15 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  activateLogin: true,
   api: './api/',
   apiSuffix: '',
   appname: 'feature-app',
   defaultRoute: 'feature',
   production: false,
-  redirectNotFound: false,
-  showFeatures: true,
-  showLogin: false,
   theme: 'indigo-pink',
 };
 

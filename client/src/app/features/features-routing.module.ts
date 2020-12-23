@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
+import { environment } from '../../environments/environment';
 import { AuthGuard } from '../core/auth-guard.service';
 import { AdminComponent } from './admin/admin.component';
 import { CalendarComponent } from './calendar/calendar.component';
@@ -8,8 +9,6 @@ import { FeatureComponent } from './feature/feature.component';
 import { MemberComponent } from './member/member.component';
 import { NoteComponent } from './note/note.component';
 import { PostComponent } from './post/post.component';
-
-import { environment } from '../../environments/environment';
 
 const routes: Routes = [{
   canActivate: [AuthGuard],
@@ -38,15 +37,10 @@ const routes: Routes = [{
 }];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(routes),
-  ],
-  exports: [
-    RouterModule,
-  ],
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 export class FeaturesRoutingModule {
 
-  public static ROUTES = routes;
-
+  static ROUTES = routes;
 }
