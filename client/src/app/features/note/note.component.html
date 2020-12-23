@@ -2,7 +2,7 @@
   <div fxFlex="10%" fxFlex.gt-xs="20%"></div>
   <mat-card fxFlex class="card">
     <mat-card-content>
-      <form [formGroup]="noteForm" (ngSubmit)="onSubmit()" novalidate>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
         <div fxLayout="row" fxLayout.lt-md="column">
           <mat-form-field fxFlex>
             <input matInput placeholder="title" formControlName="title" required>
@@ -20,7 +20,7 @@
             <textarea matInput formControlName="text" placeholder="text" required></textarea>
         </mat-form-field>
         <div fxLayout="row">
-          <button fxFlex type="submit" class="full-width" mat-raised-button color="primary" [disabled]="noteForm.invalid">Save</button>
+          <button fxFlex type="submit" class="full-width" mat-raised-button color="primary" [disabled]="form.invalid">Save</button>
         </div>
       </form>
     </mat-card-content>

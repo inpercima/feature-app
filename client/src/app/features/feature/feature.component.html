@@ -2,14 +2,14 @@
     <div fxFlex="10%" fxFlex.gt-xs="20%"></div>
     <mat-card fxFlex class="card">
       <mat-card-content>
-        <form [formGroup]="featureForm" novalidate>
+        <form [formGroup]="form" novalidate>
           <div fxLayout="row" fxLayout.lt-md="column">
             <mat-form-field fxFlex>
               <input matInput placeholder="photographer" formControlName="photographer" [matAutocomplete]="autocompletePhotographer">
               <mat-autocomplete #autocompletePhotographer="matAutocomplete">
                 <mat-option *ngFor="let photographer of filteredPhotographer | async" [value]="photographer">{{ photographer }}</mat-option>
               </mat-autocomplete>
-              <mat-error *ngIf="featureForm.get('photographer').errors && featureForm.get('photographer').errors.featured">The user is used in last 60 posts</mat-error>
+              <mat-error *ngIf="form.value.photographer.errors && form.value.photographer.errors.featured">The user is used in last 60 posts</mat-error>
             </mat-form-field>
             <mat-form-field fxFlex>
               <input matInput placeholder="location" formControlName="location" [matAutocomplete]="autocompleteLocation">
@@ -23,18 +23,18 @@
               </mat-select>
             </mat-form-field>
           </div>
-          <mat-form-field class="full-width">
-              <textarea matInput readonly placeholder="feature" #copyToClipboard class="featureText">present
+          <mat-form-field>
+              <textarea formControlName="featuredText" matInput readonly placeholder="feature" #copyToClipboard class="featureText">present
 
 I G  O F  T H E  D A Y
 
-P H O T O | @{{ featureForm.get('photographer').value }}
+P H O T O | @{{ form.value.photographer }}
 
-L O C A T I O N | {{ featureForm.get('location').value }}
+L O C A T I O N | {{ form.value.location }}
 
 _________________________________________
 
-S E L E C T E D | @{{ featureForm.get('member').value }}
+S E L E C T E D | @{{ form.value.member }}
 
 T E A M | {{ membersAsString }}
 
@@ -56,7 +56,7 @@ Powered by | T H E  .  H U B
 
 #{{ admin.dateTag }}{{ date | date: 'yyyy' }} #instagramersofthemonth_{{ date | date: 'MMMM' | lowercase }} #igd{{ date | date: 'MMddyy' }}</textarea>
             </mat-form-field>
-            <button mat-raised-button (click)="openSnackBar()" color="primary" class="full-width" [ngxClipboard]="copyToClipboard">create feature & copy to clipboard</button>
+            <button mat-raised-button color="primary" [cdkCopyToClipboard]="copy()">create feature & copy to clipboard</button>
           </form>
         </mat-card-content>
       </mat-card>

@@ -11,21 +11,21 @@ import { MemberService } from './member.service';
 })
 export class MemberComponent implements OnInit {
 
-  protected displayedColumns: string[] = ['name', 'username'];
+  displayedColumns: string[] = ['name', 'username'];
 
-  protected dataSource = new MatTableDataSource();
+  dataSource = new MatTableDataSource();
 
   constructor(private memberService: MemberService) { }
 
-  @ViewChild(MatSort, { static: false }) sort: MatSort;
+  @ViewChild(MatSort, { static: false }) sort!: MatSort;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.memberService.list().subscribe(data => this.dataSource.data = data);
     this.dataSource.sort = this.sort;
   }
 
-  applyFilter(filterValue: string) {
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
 }

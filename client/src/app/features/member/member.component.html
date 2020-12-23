@@ -2,7 +2,7 @@
   <div fxFlex="10%" fxFlex.gt-xs="20%"></div>
   <div fxFlex>
     <mat-form-field id="filter" class="full-width">
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
     </mat-form-field>
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2 full-width">
       <ng-container matColumnDef="name">

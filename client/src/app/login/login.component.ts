@@ -13,26 +13,29 @@ import { environment } from '../../environments/environment';
 })
 export class LoginComponent implements OnInit {
 
-  public loginForm: FormGroup;
+  form = this.formBuilder.group({
+    username: ['', Validators.required],
+    password: ['', Validators.required],
+  });
 
-  public hide = true;
+  hide = true;
 
-  public wrongLogin = false;
+  wrongLogin = false;
 
-  public message: string;
+  message!: string;
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private postService: PostService,
               private router: Router) { }
 
   ngOnInit() {
-    this.loginForm = this.formBuilder.group({
+    this.form = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
 
   onSubmit() {
-    this.authService.login(this.loginForm).subscribe(() => {
+    this.authService.login(this.form).subscribe(() => {
       if (this.isAuthenticated()) {
         this.postService.save().subscribe(() => {
           this.postService.delete();
@@ -57,5 +60,4 @@ export class LoginComponent implements OnInit {
     this.authService.logout();
     this.router.navigate(['login']);
   }
-
 }

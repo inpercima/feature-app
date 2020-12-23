@@ -9,7 +9,9 @@ import { Admin } from './admin';
 
 import { environment } from '../../../environments/environment';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AdminService {
 
   constructor(private http: HttpClient) { }

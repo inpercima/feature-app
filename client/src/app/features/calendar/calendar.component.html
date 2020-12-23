@@ -13,7 +13,7 @@
     </div>
   </mat-card>
   <mat-card fxFlex *ngIf="isSelected" class="card">
-    <form [formGroup]="calendarForm" (ngSubmit)="onSubmit()" novalidate>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
       <div fxLayout="row" fxLayout.lt-md="column">
         <mat-form-field fxFlex>
           <input matInput placeholder="date" formControlName="date" readonly>
@@ -29,7 +29,7 @@
       </div>
       <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign.column="space-between stretch">
         <button fxFlex mat-raised-button (click)="isSelected=false">Cancel</button>
-        <button fxFlex type="submit" mat-raised-button color="primary" [disabled]="calendarForm.invalid">Save</button>
+        <button fxFlex type="submit" mat-raised-button color="primary" [disabled]="form.invalid">Save</button>
       </div>
     </form>
   </mat-card>

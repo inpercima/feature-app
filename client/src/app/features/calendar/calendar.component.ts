@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material';
+import { FormBuilder, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 
+import { Member } from '../member/member';
+import { MemberService } from '../member/member.service';
 import { Calendar } from './calendar';
 import { CalendarService } from './calendar.service';
 import { DialogComponent } from './dialog/dialog.component';
-import { Member } from '../member/member';
-import { MemberService } from '../member/member.service';
 
 @Component({
   selector: 'fa-calendar',
@@ -16,13 +16,17 @@ import { MemberService } from '../member/member.service';
 
 export class CalendarComponent implements OnInit {
 
-  protected calendar: Calendar[];
+  calendar!: Calendar[];
 
-  protected members: Member[];
+  members!: Member[];
 
-  protected calendarForm: FormGroup;
+  form = this.formBuilder.group({
+    date: [''],
+    member: [''],
+    representativeMember: ['', Validators.required],
+  });
 
-  protected isSelected: boolean;
+  isSelected = false;
 
   constructor(private formBuilder: FormBuilder, private calendarService: CalendarService, private memberService: MemberService,
               public dialog: MatDialog) { }
@@ -30,34 +34,29 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void {
     this.memberService.list().subscribe(members => this.members = members);
     this.createCalendar();
-    this.calendarForm = this.formBuilder.group({
-      date: [''],
-      member: [''],
-      representativeMember: ['', Validators.required],
-    });
   }
 
-  onSubmit() {
-    this.calendarService.save(this.calendarForm).subscribe(result => this.checkCreation(result));
+  onSubmit(): void {
+    this.calendarService.save(this.form).subscribe(result => this.checkCreation(result));
   }
 
   createCalendar(): void {
     this.calendarService.createCalendar().subscribe(result => this.calendar = result);
   }
 
-  checkCreation(create: boolean) {
+  checkCreation(create: boolean): void {
     if (create) {
       this.createCalendar();
       this.isSelected = false;
     }
   }
 
-  changeMember(item: Calendar) {
+  changeMember(item: Calendar): void {
     this.isSelected = true;
-    this.calendarForm.setValue({ member: item.member, date: item.date, representativeMember: '' });
+    this.form.setValue({ member: item.member, date: item.date, representativeMember: '' });
   }
 
-  revert(id: number) {
+  revert(id: number): void {
     this.calendarService.revert(id).subscribe(result => this.checkCreation(result));
   }
 

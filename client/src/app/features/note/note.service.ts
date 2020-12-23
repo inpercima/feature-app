@@ -9,7 +9,9 @@ import { Note } from './note';
 
 import { environment } from '../../../environments/environment';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class NoteService {
 
   constructor(private http: HttpClient) { }

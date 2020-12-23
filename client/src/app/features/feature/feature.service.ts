@@ -2,16 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
-import { RequestService } from 'src/app/core/request.service';
-
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class FeatureService {
 
-  constructor(private http: HttpClient, private requestService: RequestService) { }
+  constructor(private http: HttpClient) { }
 
   public checkUser(username: string): Observable<any> {
-    return this.http.get<any>(this.requestService.url('post', `?photographer=${username}`));
+    return this.http.get<any>(`${environment.api}post?photographer=${username}`);
   }
-
 }
