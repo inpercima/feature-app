@@ -10,21 +10,20 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { CoreModule } from '../core/core.module';
 import { LoginComponent } from './login.component';
 import { PostService } from '../features/post/post.service';
+import { MaterialModule } from '../shared/material/material.module';
 
-describe('LoginComponent', () => {
+describe('LoginComponent',() => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
         LoginComponent,
       ],
       imports: [
-        CoreModule,
         HttpClientTestingModule,
         JwtModule.forRoot({
           config: {
@@ -34,12 +33,9 @@ describe('LoginComponent', () => {
           },
         }),
         BrowserAnimationsModule,
-        MatCardModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatInputModule,
         ReactiveFormsModule,
         RouterTestingModule,
+        MaterialModule,
       ],
       providers: [
         JwtHelperService,
@@ -47,7 +43,7 @@ describe('LoginComponent', () => {
       ],
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginComponent);

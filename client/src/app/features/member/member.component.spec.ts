@@ -1,35 +1,31 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { MatFormFieldModule, MatTableModule, MatInputModule } from '@angular/material';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MemberComponent } from './member.component';
+import { MaterialModule } from 'src/app/shared/material/material.module';
 import { MemberService } from './member.service';
 
 describe('MemberComponent', () => {
   let component: MemberComponent;
   let fixture: ComponentFixture<MemberComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        MemberComponent,
-      ],
+      declarations: [MemberComponent],
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatTableModule,
         ReactiveFormsModule,
+        MaterialModule,
       ],
       providers: [
         MemberService,
-      ]
+      ],
     })
-    .compileComponents();
-  }));
+      .compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(MemberComponent);

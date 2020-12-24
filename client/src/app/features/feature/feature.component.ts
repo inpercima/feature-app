@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, AsyncValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormBuilder, AsyncValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { Observable } from 'rxjs';
@@ -19,13 +19,13 @@ import { MemberService } from '../member/member.service';
 export class FeatureComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private snackBar: MatSnackBar, private adminService: AdminService,
-    private memberService: MemberService, private featureService: FeatureService) { }
+              private memberService: MemberService, private featureService: FeatureService) { }
 
   date!: Date;
 
   admin = {} as Admin;
 
-  members!: Member[];
+  members = [] as Member[];
 
   membersAsString = '';
 
@@ -37,7 +37,7 @@ export class FeatureComponent implements OnInit {
     photographer: ['', '', this.usedUserValidator()],
     location: [''],
     member: [''],
-    featuredtext: [''],
+    featuredText: [''],
   });
 
   ngOnInit(): void {

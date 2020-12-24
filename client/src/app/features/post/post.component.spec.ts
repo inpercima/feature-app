@@ -1,35 +1,31 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule, MatTableModule, MatInputModule } from '@angular/material';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { PostComponent } from './post.component';
 import { PostService } from './post.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from 'src/app/shared/material/material.module';
 
 describe('PostComponent', () => {
   let component: PostComponent;
   let fixture: ComponentFixture<PostComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        PostComponent,
-      ],
+      declarations: [PostComponent],
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatTableModule,
         ReactiveFormsModule,
+        MaterialModule,
       ],
       providers: [
         PostService,
       ],
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PostComponent);
