@@ -1,4 +1,6 @@
 <?php
+require_once 'mysql.service.php';
+
 class AuthService {
 
   /**
@@ -7,7 +9,7 @@ class AuthService {
   public function __construct() {}
 
   /**
-   * Simulate a simple login authentication.
+   * Authenticate.
    */
   public function authenticate() {
     $request = json_decode(file_get_contents('php://input'));
@@ -15,7 +17,7 @@ class AuthService {
     if ($request->username == 'feature-app' && $request->password == 'feature-app') {
       $result = array('token' => $this->generateToken($request->username));
     } else {
-      http_response_code(400);
+      http_response_code(401);
     }
     return json_encode($result);
   }
@@ -30,7 +32,7 @@ class AuthService {
     $nbf = $iat + 10;
     $exp = $nbf + 7200;
     $payload = $this->base64url_encode(json_encode(array('username' => $username, 'exp' => $exp, 'nbf' => $nbf, 'iat' => $iat)));
-    $signature = $this->base64url_encode(hash_hmac('sha256', "$header.$payload", 'secretKey', true));
+    $signature = $this->base64url_encode(hash_hmac('sha256', "$header.$payload", 'featureApp', true));
     return "$header.$payload.$signature";
   }
 
