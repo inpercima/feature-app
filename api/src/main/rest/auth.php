@@ -1,15 +1,16 @@
 <?php
-require_once 'auth.service.php';
+require_once '../service/core.service.php';
+$coreService = new CoreService();
+
+require_once '../service/auth.service.php';
+
+$coreService->setHeader();
 
 $authService = new AuthService();
-
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Headers: Content-Type");
-
 switch ($_SERVER['REQUEST_METHOD']) {
   case 'POST':
-    echo $authService->authenticate();
+    $input = json_decode(file_get_contents('php://input'));
+    echo $authService->authenticate($input->username, $input->password);
     break;
   default:
     break;

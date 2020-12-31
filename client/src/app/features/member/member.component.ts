@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -15,13 +16,19 @@ export class MemberComponent implements OnInit {
 
   dataSource = new MatTableDataSource();
 
-  constructor(private memberService: MemberService) { }
+  form = this.formBuilder.group({
+    filter: ['']
+  });
 
-  @ViewChild(MatSort, { static: false }) sort!: MatSort;
+  constructor(private formBuilder: FormBuilder, private memberService: MemberService) { }
+
+  @ViewChild(MatSort) sort!: MatSort;
 
   ngOnInit(): void {
-    this.memberService.list().subscribe(data => this.dataSource.data = data);
-    this.dataSource.sort = this.sort;
+    this.memberService.list().subscribe(data => {
+      this.dataSource.data = data;
+      this.dataSource.sort = this.sort;
+    });
   }
 
   applyFilter(event: Event): void {

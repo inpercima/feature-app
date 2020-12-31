@@ -1,30 +1,29 @@
-<div fxLayout="row">
-    <div fxFlex="10%" fxFlex.gt-xs="20%"></div>
-    <mat-card fxFlex class="card">
-      <mat-card-content>
-        <form [formGroup]="form" novalidate>
-          <div fxLayout="row" fxLayout.lt-md="column">
-            <mat-form-field fxFlex>
-              <input matInput placeholder="photographer" formControlName="photographer" [matAutocomplete]="autocompletePhotographer">
-              <mat-autocomplete #autocompletePhotographer="matAutocomplete">
-                <mat-option *ngFor="let photographer of filteredPhotographer | async" [value]="photographer">{{ photographer }}</mat-option>
-              </mat-autocomplete>
-              <mat-error *ngIf="form.value.photographer.errors && form.value.photographer.errors.featured">The user is used in last 60 posts</mat-error>
-            </mat-form-field>
-            <mat-form-field fxFlex>
-              <input matInput placeholder="location" formControlName="location" [matAutocomplete]="autocompleteLocation">
-              <mat-autocomplete #autocompleteLocation="matAutocomplete">
-                <mat-option *ngFor="let location of filteredLocations | async" [value]="location">{{ location }}</mat-option>
-              </mat-autocomplete>
-            </mat-form-field>
-            <mat-form-field fxFlex>
-              <mat-select placeholder="member" formControlName="member">
-                <mat-option *ngFor="let member of members" [value]="member.username">{{ member.username }}</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <mat-form-field>
-              <textarea formControlName="featuredText" matInput readonly placeholder="feature" class="featureText">present
+<div fxLayout="row" fxLayoutAlign="center">
+  <mat-card fxFlex="60">
+    <mat-card-content>
+      <form fxLayout="column" [formGroup]="form" novalidate>
+        <div fxLayout="row" fxLayout.lt-md="column">
+          <mat-form-field fxFlex>
+            <input matInput placeholder="photographer" formControlName="photographer" [matAutocomplete]="autocompletePhotographer">
+            <mat-autocomplete #autocompletePhotographer="matAutocomplete">
+              <mat-option *ngFor="let photographer of filteredPhotographer | async" [value]="photographer">{{ photographer }}</mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="form.controls.photographer.hasError('featured')">The user is used in last 60 posts</mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex fxFlexOffset="2">
+            <input matInput placeholder="location" formControlName="location" [matAutocomplete]="autocompleteLocation">
+            <mat-autocomplete #autocompleteLocation="matAutocomplete">
+              <mat-option *ngFor="let location of filteredLocations | async" [value]="location">{{ location }}</mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <mat-form-field fxFlex fxFlexOffset="2">
+            <mat-select placeholder="member" formControlName="member">
+              <mat-option *ngFor="let member of members" [value]="member.username">{{ member.username }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <mat-form-field>
+          <textarea matInput readonly placeholder="feature" class="featureText">present
 
 I G  O F  T H E  D A Y
 
@@ -55,10 +54,9 @@ Powered by | T H E  .  H U B
 {{ admin.tags }}
 
 #{{ admin.dateTag }}{{ date | date: 'yyyy' }} #instagramersofthemonth_{{ date | date: 'MMMM' | lowercase }} #igd{{ date | date: 'MMddyy' }}</textarea>
-            </mat-form-field>
-            <button mat-raised-button color="primary" [cdkCopyToClipboard]="copy()">create feature & copy to clipboard</button>
-          </form>
-        </mat-card-content>
-      </mat-card>
-      <div fxFlex="10%" fxFlex.gt-xs="20%"></div>
-    </div>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="copy()">create feature & copy to clipboard</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

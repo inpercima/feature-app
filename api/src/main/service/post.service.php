@@ -1,5 +1,5 @@
 <?php
-require_once 'mysql.connect.php';
+require_once 'mysql.service.php';
 require_once 'instagram.service.php';
 
 class PostService {
@@ -10,50 +10,43 @@ class PostService {
   public function __construct() {}
 
   public function listAll() {
-    $pdo = connect();
-
-    $stmt = $pdo->query('SELECT photographer, date FROM fa_post ORDER BY date DESC');
-    return json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+    $mysqlService = new MysqlService();
+    return json_encode($mysqlService->select('`photographer`, `date`', 'post', 'ORDER BY `date` DESC'));
   }
 
-  public function checkPhotographer($query) {
-    parse_str($query, $queryArr);
-    $pdo = connect();
-
-    $stmt = $pdo->prepare('SELECT photographer FROM fa_post WHERE photographer = :photographer LIMIT 1');
-    $stmt->bindParam(':photographer', $queryArr['photographer']);
+  public function checkPhotographer($photographer) {
+    $mysqlService = new MysqlService();
+    $stmt = $mysqlService->prepareSelect('`photographer`', 'post', 'WHERE `photographer` = :photographer LIMIT 1');
+    $stmt->bindParam(':photographer', $photographer);
     $stmt->execute();
-    return json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+    return json_encode($stmt->fetchColumn());
   }
 
   public function delete() {
-    $pdo = connect();
-
     // 'DELETE FROM fa_post WHERE id <= (SELECT MAX(ID)-60 FROM fa_post)'
     // #1093 - Die Verwendung der zu aktualisierenden Zieltabelle 'fa_post' ist in der FROM-Klausel nicht zulässig.
-    $stmtQuery = $pdo->query('SELECT MAX(ID)-60 FROM fa_post', PDO::FETCH_ASSOC);
-    $stmt = $pdo->prepare('DELETE FROM fa_post WHERE id <= :number ');
-    $stmt->bindParam(':number', $stmtQuery->fetchColumn());
+    $mysqlService = new MysqlService();
+    $result = $mysqlService->select('MAX(ID) - 60 AS `maxId`', 'post');
+
+    $maxId = $result[0]['maxId'];
+    $stmt = $mysqlService->prepareDelete('post', "WHERE `id` <= {$maxId}");
     return json_encode($stmt->execute());
   }
 
-  public function save() {
-    $pdo = connect();
+  public function save($posts) {
+    $mysqlService = new MysqlService();
+    $result = $mysqlService->select('`accountName`', 'admin');
 
-    $stmtQuery = $pdo->query('SELECT accountName FROM fa_admin WHERE id = 1');
-    $accountName = $stmtQuery->fetchColumn();
-
+    $accountName = $result[0]['accountName'];
     $instagramService = new InstagramService();
-    $posts = json_decode($instagramService->getJson($accountName));
 
     foreach ($posts as $post) {
-      $stmtQuery = $pdo->prepare('SELECT COUNT(*) FROM fa_post WHERE date = :date');
       $date = date('Y-m-d', $post->date);
-      $stmtQuery->bindParam(':date', $date);
-      $stmtQuery->execute();
+      $result = $$mysqlService->select('COUNT(*)', 'post', "WHERE date = {$date}");
+
       // $stmt->rowCount() funktioniert nicht auf mysql bzw. ist nicht garantiert
-      if ($stmtQuery->fetchColumn() == 0) {
-        $stmt = $pdo->prepare('INSERT INTO fa_post (date, photographer) VALUES (:date, :photographer)');
+      if ($result[0] == 0) {
+        $stmt = $mysqlService->prepareInsert('`date`, `photographer`', ':date, :photographer', 'post');
         $stmt->bindParam(':date', $date);
         $stmt->bindParam(':photographer', $post->photographer);
         $stmt->execute();
@@ -61,6 +54,5 @@ class PostService {
     }
     return json_encode(true);
   }
-
 }
 ?>

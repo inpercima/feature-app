@@ -7,10 +7,11 @@ class Config {
    */
   public function __construct() {}
 
-  const JWT_KEY = '';
-  const DB_HOST = '';
-  const DB_NAME = '';
-  const DB_PASS = '';
-  const DB_USER = '';
+  const JWT_KEY   = '';
+  const DB_HOST   = '';
+  const DB_NAME   = '';
+  const DB_PASS   = '';
+  const DB_PREFIX = '';
+  const DB_USER   = '';
 }
 ?>

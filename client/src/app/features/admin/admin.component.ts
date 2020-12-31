@@ -19,6 +19,7 @@ export class AdminComponent implements OnInit {
     photographer: ['', Validators.required],
     tags: ['', Validators.required],
     startDate: ['', Validators.required],
+    startDateView: ['', Validators.required],
   });
 
   private datePipe = new DatePipe('en-US');
@@ -26,7 +27,7 @@ export class AdminComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private adminService: AdminService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.adminService.listAll().subscribe(response => {
+    this.adminService.list().subscribe(response => {
       this.form.patchValue({
         accountName: response.accountName,
         featuredTag: response.featuredTag,
@@ -35,18 +36,16 @@ export class AdminComponent implements OnInit {
         photographer: response.photographer,
         tags: response.tags,
         startDate: response.startDate,
+        startDateView: response.startDate,
       });
     });
   }
 
   onSubmit(): void {
-    const startDate = this.form.value.startDate;
-    if (startDate.valid) {
-      startDate.setValue(this.datePipe.transform(startDate.value, 'yyyy-MM-dd'));
+    const startDateView = this.form.value.startDateView;
+    if (startDateView.valid) {
+      this.form.patchValue({ startDate: this.datePipe.transform(startDateView.value, 'yyyy-MM-dd') });
     }
-    this.adminService.save(this.form).subscribe(() => {
-      startDate.setValue(new Date(startDate.value).toISOString());
-      this.snackBar.open('saved');
-    });
+    this.adminService.save(this.form.value).subscribe(() => this.snackBar.open('saved', '', { duration: 2000 }));
   }
 }

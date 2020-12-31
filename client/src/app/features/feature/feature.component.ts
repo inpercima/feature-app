@@ -1,3 +1,4 @@
+import { Clipboard } from '@angular/cdk/clipboard';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, AsyncValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -18,8 +19,8 @@ import { MemberService } from '../member/member.service';
 })
 export class FeatureComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private snackBar: MatSnackBar, private adminService: AdminService,
-              private memberService: MemberService, private featureService: FeatureService) { }
+  constructor(private clipboard: Clipboard, private formBuilder: FormBuilder, private snackBar: MatSnackBar,
+              private adminService: AdminService, private memberService: MemberService, private featureService: FeatureService) { }
 
   date!: Date;
 
@@ -37,12 +38,11 @@ export class FeatureComponent implements OnInit {
     photographer: ['', '', this.usedUserValidator()],
     location: [''],
     member: [''],
-    featuredText: [''],
   });
 
   ngOnInit(): void {
     this.date = new Date();
-    this.adminService.listAll().subscribe(admin => {
+    this.adminService.list().subscribe(admin => {
       this.admin = admin;
       this.filteredPhotographer = this.form.controls.photographer.valueChanges.pipe(startWith(''), map(value => {
         return this.admin.photographer.split(',').filter(photographer => photographer.toLowerCase().includes(value.toLowerCase()));
@@ -58,9 +58,9 @@ export class FeatureComponent implements OnInit {
     });
   }
 
-  copy(): string {
+  copy(): void {
+    this.clipboard.copy(document.querySelector('.featureText')?.innerHTML ?? '');
     this.snackBar.open('copied to clipboard', '', { duration: 2000 });
-    return this.form.value.featuredtext;
   }
 
   usedUserValidator(): AsyncValidatorFn {

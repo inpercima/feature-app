@@ -1,5 +1,5 @@
 <div fxLayout="row" fxLayoutAlign="center">
-  <mat-card fxFlex="60" *ngIf="!isAuthenticated()">
+  <mat-card fxFlex="60" *ngIf="!this.authService.isAuthenticated()">
     <form fxLayout="column" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
       <mat-error *ngIf="wrongLogin">{{ message }}</mat-error>
       <mat-form-field>
@@ -14,7 +14,7 @@
       <button type="submit" mat-raised-button color="primary" [disabled]="form.invalid">Login</button>
     </form>
   </mat-card>
-  <mat-card fxFlex="60" *ngIf="isAuthenticated()">
+  <mat-card fxFlex="60" *ngIf="this.authService.isAuthenticated()">
     You are logged in. You can
     <a href="#" (click)="logout()">logout</a>.
   </mat-card>

@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -16,14 +15,11 @@ export class AdminService {
 
   constructor(private http: HttpClient) { }
 
-  public listAll(): Observable<Admin> {
-    return this.http.get<Admin>(`${environment.api}admin${environment.apiSuffix}`);
+  list(): Observable<Admin> {
+    return this.http.get<Admin>(`${environment.api}admin`);
   }
 
-  public save(formGroup: FormGroup): Observable<boolean> {
-    return this.http.post<boolean>(`${environment.api}admin${environment.apiSuffix}`, formGroup.value).pipe(map(response => {
-      return response !== null && response;
-    }));
+  save(form: any): Observable<boolean> {
+    return this.http.post<boolean>(`${environment.api}admin`, form).pipe(map(response => response !== null && response));
   }
-
 }

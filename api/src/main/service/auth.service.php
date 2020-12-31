@@ -11,19 +11,31 @@ class AuthService {
   /**
    * Authenticate.
    */
-  public function authenticate() {
-    $request = json_decode(file_get_contents('php://input'));
-    $result = array('message' => 'Username or password is incorrect');
-    if ($request->username == 'feature-app' && $request->password == 'feature-app') {
-      $result = array('token' => $this->generateToken($request->username));
+  public function authenticate($username, $password) {
+    $result = '';
+    if ($this->findUserByEMail($username, $password)) {
+      header('Access-Control-Expose-Headers: Authorization');
+      header('Authorization: Bearer ' . $this->generateToken($username));
     } else {
+      $result = array('message' => 'Username or password is incorrect.');
       http_response_code(401);
     }
     return json_encode($result);
   }
 
+  function findUserByEMail($username, $password) {
+    $mysqlService = new MysqlService();
+    $stmt = $mysqlService->prepareSelect('`password`', 'user', 'WHERE `username` = :username');
+    $stmt->bindParam(':username', $username);
+    $stmt->execute();
+    $hash = $stmt->fetchColumn();
+
+    return password_verify($password, $hash);
+  }
+
   /**
    * Generate a simple jwt to authenticate.
+   *
    * @param string $username
    */
   function generateToken($username) {
@@ -38,11 +50,11 @@ class AuthService {
 
   /**
    * Helper function to base64Url encode.
+   *
    * @param string $data
    */
   function base64url_encode($data) {
     return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
   }
-
 }
 ?>

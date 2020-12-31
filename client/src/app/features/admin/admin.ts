@@ -13,5 +13,4 @@ export interface Admin {
   startDate: string;
 
   tags: string;
-
 }

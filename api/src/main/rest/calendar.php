@@ -1,9 +1,14 @@
 <?php
-require_once 'calendar.service.php';
+require_once '../service/core.service.php';
+$coreService = new CoreService();
+
+require_once '../service/calendar.service.php';
+
+$coreService->setHeader();
 
 $calendarService = new CalendarService();
-
 switch ($_SERVER['REQUEST_METHOD']) {
+  default:
   case 'GET':
     echo $calendarService->listAll();
     break;
@@ -11,10 +16,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
     echo $calendarService->save(json_decode(file_get_contents('php://input')));
     break;
   case 'DELETE':
-    $id = substr($_SERVER['REQUEST_URI'], strrpos($_SERVER['REQUEST_URI'], '/') + 1);
-    echo $calendarService->delete($id);
-    break;
-  default:
+    echo $calendarService->delete(substr($_SERVER['PATH_INFO'], 1));
     break;
 }
 ?>

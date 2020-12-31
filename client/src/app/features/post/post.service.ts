@@ -14,16 +14,15 @@ export class PostService {
 
   constructor(private http: HttpClient) { }
 
-  public list(): Observable<Post[]> {
-    return this.http.get<Post[]>(`${environment.api}post${environment.apiSuffix}?_sort=date&_order=desc`);
+  list(): Observable<Post[]> {
+    return this.http.get<Post[]>(`${environment.api}post`);
   }
 
-  public delete(): void {
-    this.http.delete(`${environment.api}post${environment.apiSuffix}/0`).subscribe();
+  save(): Observable<boolean> {
+    return this.http.post<boolean>(`${environment.api}post`, {});
   }
 
-  public save(): Observable<boolean> {
-    return this.http.post<boolean>(`${environment.api}post${environment.apiSuffix}`, {});
+  delete(): Observable<any> {
+    return this.http.delete(`${environment.api}post`);
   }
-
 }

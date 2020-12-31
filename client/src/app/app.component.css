@@ -7,3 +7,7 @@ body {
 .mat-card {
   margin-top: 20px;
 }
+
+.featureText {
+  height: 600px !important;
+}

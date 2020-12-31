@@ -1,21 +1,25 @@
-<div fxLayout="row">
-  <div fxFlex="10%" fxFlex.gt-xs="20%"></div>
-  <div fxFlex>
-    <mat-form-field id="filter">
-      <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
-    </mat-form-field>
-    <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2">
-      <ng-container matColumnDef="date">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.date | date: 'MM/dd/yyyy' }}</mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="photographer">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Photo by</mat-header-cell>
-        <mat-cell *matCellDef="let element"><a href="https://instagram.com/{{element.photographer}}" target="_blank">{{ element.photographer }}</a></mat-cell>
-      </ng-container>
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-  </div>
-  <div fxFlex="10%" fxFlex.gt-xs="20%"></div>
+<div fxLayout="row" fxLayoutAlign="center">
+  <mat-card fxFlex="60">
+    <mat-card-content>
+      <form [formGroup]="form" fxLayout="row" novalidate>
+        <mat-form-field fxFlex>
+          <input matInput placeholder="Filter" formControlName="filter" (keyup)="applyFilter($event)">
+        </mat-form-field>
+      </form>
+      <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2">
+        <ng-container matColumnDef="date">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{ element.date | date: 'MM/dd/yyyy' }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="photographer">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Photo by</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <a href="https://instagram.com/{{element.photographer}}" target="_blank">{{ element.photographer }}</a>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </mat-card-content>
+  </mat-card>
 </div>

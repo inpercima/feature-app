@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { environment } from '../../environments/environment';
-import { AuthGuard } from '../core/auth-guard.service';
+import { AuthGuard } from '../auth/auth-guard.service';
 import { AdminComponent } from './admin/admin.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { FeatureComponent } from './feature/feature.component';

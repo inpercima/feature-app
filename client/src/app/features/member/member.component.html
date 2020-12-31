@@ -1,21 +1,23 @@
-<div fxLayout="row">
-  <div fxFlex="10%" fxFlex.gt-xs="20%"></div>
-  <div fxFlex>
-    <mat-form-field id="filter" class="full-width">
-      <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
-    </mat-form-field>
-    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2 full-width">
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-        <td mat-cell *matCellDef="let item">{{ item.name }}</td>
-      </ng-container>
-      <ng-container matColumnDef="username">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Username</th>
-        <td mat-cell *matCellDef="let item">{{ item.username }}</td>
-      </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-  </div>
-  <div fxFlex="10%" fxFlex.gt-xs="20%"></div>
+<div fxLayout="row" fxLayoutAlign="center">
+  <mat-card fxFlex="60">
+    <mat-card-content>
+      <form [formGroup]="form" fxLayout="row" novalidate>
+        <mat-form-field fxFlex>
+          <input matInput placeholder="Filter" formControlName="filter" (keyup)="applyFilter($event)">
+        </mat-form-field>
+      </form>
+      <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2">
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+          <mat-cell *matCellDef="let item">{{ item.name }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="username">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Username</mat-header-cell>
+          <mat-cell *matCellDef="let item">{{ item.username }}</mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </mat-card-content>
+  </mat-card>
 </div>

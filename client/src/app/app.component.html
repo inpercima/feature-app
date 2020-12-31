@@ -3,7 +3,7 @@
     {{ appname }}
   </mat-toolbar>
   <nav mat-tab-nav-bar>
-    <a mat-tab-link
+    <a mat-tab-link fxFlex
       *ngFor="let routeLink of routes | appRouting"
       [routerLink]="routeLink.path"
       routerLinkActive #rla="routerLinkActive"

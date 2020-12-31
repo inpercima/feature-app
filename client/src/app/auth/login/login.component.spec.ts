@@ -11,8 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { LoginComponent } from './login.component';
-import { PostService } from '../features/post/post.service';
-import { MaterialModule } from '../shared/material/material.module';
+import { PostService } from '../../features/post/post.service';
+import { MaterialModule } from '../../shared/material/material.module';
 
 describe('LoginComponent',() => {
   let component: LoginComponent;

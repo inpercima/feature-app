@@ -1,13 +1,18 @@
 <?php
-require_once 'post.service.php';
+require_once '../service/core.service.php';
+$coreService = new CoreService();
+
+require_once '../service/post.service.php';
+
+$coreService->setHeader();
 
 $postService = new PostService();
-
 switch ($_SERVER['REQUEST_METHOD']) {
+  default:
   case 'GET':
-    $query = $_SERVER['QUERY_STRING'];
-    if (strpos($query, 'photographer') !== false) {
-      echo $postService->checkPhotographer($query);
+    if (isset($_SERVER['PATH_INFO'])) {
+      $photographer = substr($_SERVER['PATH_INFO'], 1);
+      echo $postService->checkPhotographer($photographer);
     } else {
       echo $postService->listAll();
     }
@@ -16,9 +21,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
     echo $postService->delete();
     break;
   case 'POST':
-    echo $postService->save();
-    break;
-  default:
+    echo $postService->save(json_decode(file_get_contents('php://input')));
     break;
 }
 ?>

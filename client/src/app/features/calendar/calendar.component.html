@@ -1,6 +1,5 @@
-<div fxLayout="row">
-  <div fxFlex="10%" fxFlex.gt-xs="20%"></div>
-  <mat-card fxFlex *ngIf="!isSelected" class="card">
+<div fxLayout="row" fxLayoutAlign="center">
+  <mat-card fxFlex="60" *ngIf="!isSelected">
     <div *ngFor="let item of calendar">
       <button mat-button (click)="item.isChanged ? openDialog(item) : changeMember(item)">
         <span *ngIf="item.isChanged" ngClass="representativeMember">
@@ -12,26 +11,27 @@
       </button>
     </div>
   </mat-card>
-  <mat-card fxFlex *ngIf="isSelected" class="card">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
-      <div fxLayout="row" fxLayout.lt-md="column">
-        <mat-form-field fxFlex>
-          <input matInput placeholder="date" formControlName="date" readonly>
-        </mat-form-field>
-        <mat-form-field fxFlex>
-          <input matInput placeholder="member" formControlName="member" readonly>
-        </mat-form-field>
-        <mat-form-field fxFlex>
-          <mat-select placeholder="representative member" formControlName="representativeMember" required>
-            <mat-option *ngFor="let member of members" [value]="member.username">{{ member.username }}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign.column="space-between stretch">
-        <button fxFlex mat-raised-button (click)="isSelected=false">Cancel</button>
-        <button fxFlex type="submit" mat-raised-button color="primary" [disabled]="form.invalid">Save</button>
-      </div>
-    </form>
+  <mat-card fxFlex="60" *ngIf="isSelected">
+    <mat-card-content>
+      <form fxLayout="column" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <div fxLayout="row" fxLayout.lt-md="column">
+          <mat-form-field fxFlex>
+            <input matInput placeholder="date" formControlName="date" readonly>
+          </mat-form-field>
+          <mat-form-field fxFlex fxFlexOffset="2">
+            <input matInput placeholder="member" formControlName="member" readonly>
+          </mat-form-field>
+          <mat-form-field fxFlex fxFlexOffset="2">
+            <mat-select placeholder="representative member" formControlName="representativeMember" required>
+              <mat-option *ngFor="let member of members" [value]="member.username">{{ member.username }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign.column="space-between stretch">
+          <button fxFlex mat-raised-button (click)="isSelected=false">Cancel</button>
+          <button fxFlex type="submit" mat-raised-button color="primary" [disabled]="form.invalid">Save</button>
+        </div>
+      </form>
+    </mat-card-content>
   </mat-card>
-  <div fxFlex="10%" fxFlex.gt-xs="20%"></div>
 </div>

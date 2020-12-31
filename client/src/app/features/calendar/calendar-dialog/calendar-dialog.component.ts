@@ -2,14 +2,13 @@ import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'fa-dialog',
-  templateUrl: './dialog.component.html',
-  styles: ['./dialog.component.css'],
+  selector: 'fa-calendar-dialog',
+  templateUrl: './calendar-dialog.component.html',
 })
 
-export class DialogComponent {
+export class CalendarDialogComponent {
 
-  constructor(public dialogRef: MatDialogRef<DialogComponent>) { }
+  constructor(public dialogRef: MatDialogRef<CalendarDialogComponent>) { }
 
   onNoClick(): void {
     this.dialogRef.close(false);
@@ -18,5 +17,4 @@ export class DialogComponent {
   onYesClick(): void {
     this.dialogRef.close(true);
   }
-
 }

@@ -6,7 +6,7 @@ import { Member } from '../member/member';
 import { MemberService } from '../member/member.service';
 import { Calendar } from './calendar';
 import { CalendarService } from './calendar.service';
-import { DialogComponent } from './dialog/dialog.component';
+import { CalendarDialogComponent } from './calendar-dialog/calendar-dialog.component';
 
 @Component({
   selector: 'fa-calendar',
@@ -37,11 +37,11 @@ export class CalendarComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.calendarService.save(this.form).subscribe(result => this.checkCreation(result));
+    this.calendarService.save(this.form.value).subscribe(response => this.checkCreation(response));
   }
 
   createCalendar(): void {
-    this.calendarService.createCalendar().subscribe(result => this.calendar = result);
+    this.calendarService.createCalendar().subscribe(response => this.calendar = response);
   }
 
   checkCreation(create: boolean): void {
@@ -53,7 +53,11 @@ export class CalendarComponent implements OnInit {
 
   changeMember(item: Calendar): void {
     this.isSelected = true;
-    this.form.setValue({ member: item.member, date: item.date, representativeMember: '' });
+    this.form.patchValue({
+      member: item.member,
+      date: item.date,
+      representativeMember: ''
+    });
   }
 
   revert(id: number): void {
@@ -61,13 +65,12 @@ export class CalendarComponent implements OnInit {
   }
 
   openDialog(item: Calendar): void {
-    const dialogRef = this.dialog.open(DialogComponent, { width: '300px' });
+    const dialogRef = this.dialog.open(CalendarDialogComponent, { width: '300px' });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.revert(item.id);
       }
       this.checkCreation(result);
-  });
-}
-
+    });
+  }
 }

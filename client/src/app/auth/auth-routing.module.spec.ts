@@ -1,4 +1,4 @@
-import { LoginRoutingModule } from './login-routing.module';
+import { LoginRoutingModule } from './auth-routing.module';
 
 describe('LoginRoutingModule', () => {
   let loginRoutingModule: LoginRoutingModule;

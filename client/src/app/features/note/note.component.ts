@@ -26,28 +26,28 @@ export class NoteComponent implements OnInit {
     title: ['', Validators.required],
     text: ['', Validators.required],
     date: [this.now, Validators.required],
+    dateView: [this.now, Validators.required],
   });
 
   notes!: Note[];
 
   constructor(private formBuilder: FormBuilder, private noteService: NoteService, private memberService: MemberService,
-    private snackBar: MatSnackBar) { }
+              private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.memberService.list().subscribe(result => this.members = result);
     this.loadNotes();
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.form.patchValue({ date: this.datePipe.transform(this.form.value.date, 'yyyy-MM-dd') });
-    this.noteService.save(this.form).subscribe(() => {
-      this.form.patchValue({ date: this.now });
+    this.noteService.save(this.form.value).subscribe(() => {
       this.loadNotes();
-      this.snackBar.open('saved');
+      this.snackBar.open('saved', '', { duration: 2000 });
     });
   }
 
-  private loadNotes() {
+  private loadNotes(): void {
     this.noteService.list().subscribe(result => this.notes = result);
   }
 }
