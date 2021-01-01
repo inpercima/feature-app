@@ -14,7 +14,7 @@ import { LoginComponent } from './login.component';
 import { PostService } from '../../features/post/post.service';
 import { MaterialModule } from '../../shared/material/material.module';
 
-describe('LoginComponent',() => {
+describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
 
@@ -42,7 +42,7 @@ describe('LoginComponent',() => {
         PostService,
       ],
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
