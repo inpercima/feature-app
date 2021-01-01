@@ -18,8 +18,8 @@ export class PostService {
     return this.http.get<Post[]>(`${environment.api}post`);
   }
 
-  save(): Observable<boolean> {
-    return this.http.post<boolean>(`${environment.api}post`, {});
+  save(posts: Post[]): Observable<boolean> {
+    return this.http.post<boolean>(`${environment.api}post`, posts);
   }
 
   delete(): Observable<any> {

@@ -9,6 +9,7 @@ export const environment = {
   defaultRoute: 'feature',
   production: false,
   theme: 'indigo-pink',
+  userId: '',
 };
 
 /*

@@ -35,17 +35,12 @@ class PostService {
 
   public function save($posts) {
     $mysqlService = new MysqlService();
-    $result = $mysqlService->select('`accountName`', 'admin');
-
-    $accountName = $result[0]['accountName'];
-    $instagramService = new InstagramService();
-
     foreach ($posts as $post) {
-      $date = date('Y-m-d', $post->date);
-      $result = $$mysqlService->select('COUNT(*)', 'post', "WHERE date = {$date}");
+      $date = date('Y-m-d', strtotime($post->date));
+      $result = $mysqlService->select('COUNT(*) AS `count`', 'post', "WHERE `date` = {$date}");
 
-      // $stmt->rowCount() funktioniert nicht auf mysql bzw. ist nicht garantiert
-      if ($result[0] == 0) {
+      //$stmt->rowCount() funktioniert nicht auf mysql bzw. ist nicht garantiert
+      if ($result[0]['count'] == 0) {
         $stmt = $mysqlService->prepareInsert('`date`, `photographer`', ':date, :photographer', 'post');
         $stmt->bindParam(':date', $date);
         $stmt->bindParam(':photographer', $post->photographer);

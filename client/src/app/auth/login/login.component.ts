@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 
 import { PostService } from '../../features/post/post.service';
 import { AuthService } from '../auth.service';
+import { InstagramService } from 'src/app/core/instagram.service';
 
 @Component({
   selector: 'fa-login',
@@ -21,13 +22,16 @@ export class LoginComponent {
 
   message!: string;
 
-  constructor(private formBuilder: FormBuilder, public authService: AuthService, private postService: PostService) { }
+  constructor(private formBuilder: FormBuilder, public authService: AuthService, private instagramService: InstagramService,
+              private postService: PostService) { }
 
   onSubmit(): void {
     this.authService.login(this.form.value).subscribe(response => {
       if (response) {
-        this.postService.save().subscribe(() => {
-          this.postService.delete().subscribe();
+        this.instagramService.getLastPostsByGraphQlOnClient().subscribe(posts => {
+          this.postService.save(posts).subscribe(() => {
+            this.postService.delete().subscribe();
+          });
         });
       }
     }, error => {
