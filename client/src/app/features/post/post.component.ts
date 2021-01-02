@@ -30,7 +30,6 @@ export class PostComponent implements OnInit {
       this.dataSource.data = data;
       this.dataSource.sort = this.sort;
     });
-    this.instagramService.getLastPostsByGraphQlOnClient().subscribe(response => console.log(response));
   }
 
   applyFilter(event: Event): void {

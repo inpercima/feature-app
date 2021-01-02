@@ -36,16 +36,11 @@ export class InstagramService {
   private createPost(item: any, status: string): Post {
     const extractions = this.extractItems(item.edge_media_to_caption.edges[0].node.text);
     const post = {} as Post;
-    post.id = item.id;
-    post.picture = item.display_url;
-    post.video = item.is_video ? item.video_url : null;
-    post.likes = item.edge_media_preview_like.count;
     post.date = new Date(item.taken_at_timestamp * 1000);
-    if (status === 'ok' || (status === undefined && item !== undefined)) {
-      post.responseCode = 'HTTP/1.1 200 OK';
+    if (extractions) {
+      post.selected = extractions.selected;
+      post.photographer = extractions.photographer;
     }
-    post.selected = extractions.selected;
-    post.photographer = extractions.photographer;
     return post;
   }
 

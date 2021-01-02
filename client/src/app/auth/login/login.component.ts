@@ -29,9 +29,11 @@ export class LoginComponent {
     this.authService.login(this.form.value).subscribe(response => {
       if (response) {
         this.instagramService.getLastPostsByGraphQlOnClient().subscribe(posts => {
-          this.postService.save(posts).subscribe(() => {
-            this.postService.delete().subscribe();
-          });
+          if (posts) {
+            this.postService.save(posts).subscribe(() => {
+              this.postService.delete().subscribe();
+            });
+          }
         });
       }
     }, error => {
