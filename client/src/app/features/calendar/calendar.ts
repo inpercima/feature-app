@@ -9,5 +9,4 @@ export interface Calendar {
   isChanged: boolean;
 
   representativeMember: string;
-
 }

@@ -1,9 +1,18 @@
 export interface Post {
 
+  date: Date;
+
   id: number;
 
-  date: string;
+  likes: number;
+
+  picture: string;
+
+  responseCode: string;
+
+  video: string;
+
+  selected: string;
 
   photographer: string;
-
 }

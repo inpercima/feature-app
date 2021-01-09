@@ -21,7 +21,7 @@ cp src/environments/environment.ts src/environments/environment.mock.ts
 cp src/environments/environment.ts src/environments/environment.prod.ts
 ```
 
-**Note**: These files will not be under version control and listed in .gitignore.
+**Note**: These files will not be under version control but listed in .gitignore.
 
 ## Usage
 
@@ -78,30 +78,18 @@ ng e2e
 
 ### General
 
-All options have to bet set in the environment files but some of them do not need to be changed.
-All defaults refer to the development environment file (`environment.dev.ts`).
+All options have to been set in the environment files but some of them do not need to be changed.
+All defaults refer to the environment file (`environment.ts`), they are prepared in devMode (`environment.dev.ts`).
 Change for prodMode the option `production` to `true` and for mockMode the option `api` to `http://localhost:3000/`.
 
 ### Table of contents
 
-* [activateLogin](#activateLogin)
 * [api](#api)
 * [apiSuffix](#apiSuffix)
 * [appname](#appname)
 * [defaultRoute](#defaultRoute)
 * [production](#production)
-* [redirectNotFound](#redirectNotFound)
-* [showFeatures](#showFeatures)
-* [showLogin](#showLogin)
 * [theme](#theme)
-
-### `activateLogin`
-
-Defines whether a login will be used or not.
-
-* default: `true`
-* type: `boolean`
-* values: `true`/`false`
 
 ### `api`
 
@@ -126,7 +114,7 @@ Applicationwide title of the app, displayed in title and toolbar.
 
 ### `defaultRoute`
 
-The main route and the redirect route after login if no route is stored.
+The default route and the route to be redirected after a login if no route is stored or if a route does not exist.
 
 * default: `feature`
 * type: `string`
@@ -134,30 +122,6 @@ The main route and the redirect route after login if no route is stored.
 ### `production`
 
 Defines whether the app is in production or not.
-
-* default: `false`
-* type: `boolean`
-* values: `true`/`false`
-
-### `redirectNotFound`
-
-Defines whether the 404 route will redirect to the default route or not.
-
-* default: `false`
-* type: `boolean`
-* values: `true`/`false`
-
-### `showFeatures`
-
-Defines whether feature routes will be displayed or not.
-
-* default: `true`
-* type: `boolean`
-* values: `true`/`false`
-
-### `showLogin`
-
-Defines whether login route will be displayed or not.
 
 * default: `false`
 * type: `boolean`

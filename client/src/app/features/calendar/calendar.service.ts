@@ -1,31 +1,32 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { Observable, of } from 'rxjs';
+
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { AdminService } from '../admin/admin.service';
-import { Calendar } from './calendar';
-import { Member } from '../member/member';
 import { MemberService } from '../member/member.service';
+import { Member } from '../member/member';
+import { Calendar } from './calendar';
+import { environment } from 'src/environments/environment';
 
-import { environment } from '../../../environments/environment';
-
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CalendarService {
 
   // Millisekunden für ein Tag, 24h*60m*60s*1000m
   private ONE_DAY = 86400000;
 
-  protected members: Member[];
+  private members!: Member[];
 
   constructor(private http: HttpClient, private adminService: AdminService, private memberService: MemberService) { }
 
   public createCalendar(): Observable<Calendar[]> {
     this.memberService.list().subscribe(members => this.members = members);
-    return this.http.get<Calendar[]>(`${environment.api}calendar${environment.apiSuffix}`).pipe(map(response => {
+    return this.http.get<Calendar[]>(`${environment.api}calendar`).pipe(map(response => {
       const calendar: Calendar[] = [];
-      const currentDateMidnight = this.getDateMidnight(true, null);
+      const currentDateMidnight = this.getDateMidnight(null);
       this.daysBetween(currentDateMidnight).subscribe(days => {
         let calendarDate = currentDateMidnight;
         let index = this.getStartIndex(days);
@@ -33,18 +34,20 @@ export class CalendarService {
           index = this.getIndex(index);
           const user = this.members.find(member => Number(member.id) === index);
           index++;
-          const item: Calendar = this.createCalendarItem(calendarDate, user);
-          calendarDate = this.updateDate(calendarDate);
-          if (response.length) {
-            response.forEach(value => {
-              if (value.date === item.date) {
-                item.id = value.id;
-                item.isChanged = true;
-                item.representativeMember = value.representativeMember;
-              }
-            });
+          if (user) {
+            const item = this.createCalendarItem(calendarDate, user);
+            calendarDate = this.updateDate(calendarDate);
+            if (response.length) {
+              response.forEach(value => {
+                if (value.date === item.date) {
+                  item.id = value.id;
+                  item.isChanged = true;
+                  item.representativeMember = value.representativeMember;
+                }
+              });
+            }
+            calendar.push(item);
           }
-          calendar.push(item);
         }
       });
       return calendar;
@@ -55,8 +58,8 @@ export class CalendarService {
    * Calculates the days between the start date and the current date.
    */
   private daysBetween(currentDate: Date): Observable<number> {
-    return this.adminService.listAll().pipe(map(response => {
-      const startDate = this.getDateMidnight(false, response.startDate.replace(/-/g, '/'));
+    return this.adminService.list().pipe(map(response => {
+      const startDate = this.getDateMidnight(response.startDate.replace(/-/g, '/'));
       return Math.round(Math.abs((startDate.getTime() - currentDate.getTime()) / this.ONE_DAY));
     }));
   }
@@ -65,8 +68,8 @@ export class CalendarService {
    * For the parameter 'current' = true, the current day is used to set the time to midnight.
    * With 'current' = false, the date in parameter 'date' is used.
    */
-  private getDateMidnight(current: boolean, date: string): Date {
-    const currentDate = current ? new Date() : new Date(`${date} 00:00:00`);
+  private getDateMidnight(date: string | null): Date {
+    const currentDate = date ? new Date(`${date} 00:00:00`) : new Date();
     currentDate.setHours(0, 0, 0, 0);
     return currentDate;
   }
@@ -96,16 +99,11 @@ export class CalendarService {
     return new Date(newDate.getTime() + (date.getTimezoneOffset() < newDate.getTimezoneOffset() ? 7200000 : 0));
   }
 
-  public save(formGroup: FormGroup): Observable<boolean> {
-    return this.http.post<boolean>(`${environment.api}calendar${environment.apiSuffix}`, formGroup.value).pipe(map(response => {
-      return response !== null && response;
-    }));
+  public save(form: any): Observable<boolean> {
+    return this.http.post<boolean>(`${environment.api}calendar`, form).pipe(map(response => response !== null && response));
   }
 
   public revert(id: number): Observable<boolean> {
-    return this.http.delete<boolean>(`${environment.api}calendar${environment.apiSuffix}/${id}`).pipe(map(response => {
-      return response !== null && response;
-    }));
+    return this.http.delete<boolean>(`${environment.api}calendar.php/${id}`).pipe(map(response => response !== null && response));
   }
-
 }

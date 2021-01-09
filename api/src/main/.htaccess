@@ -1,7 +1,0 @@
-# Remove the php extension from the filename
-RewriteEngine On
-RewriteCond %{REQUEST_METHOD} !DELETE
-RewriteRule ^([^\.]+)$ $1.php [NC,L]
-
-RewriteCond %{REQUEST_METHOD} =DELETE
-RewriteRule ^([^\.]+)\/([0-9]+)$ $1.php/$2 [NC,L]

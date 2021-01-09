@@ -1,36 +1,31 @@
-<div fxLayout="row">
-  <div fxFlex="10%" fxFlex.gt-xs="20%"></div>
-  <mat-card fxFlex class="card">
+<div fxLayout="row" fxLayoutAlign="center">
+  <mat-card fxFlex="60">
     <mat-card-content>
-      <form [formGroup]="noteForm" (ngSubmit)="onSubmit()" novalidate>
+      <form fxLayout="column" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
         <div fxLayout="row" fxLayout.lt-md="column">
           <mat-form-field fxFlex>
             <input matInput placeholder="title" formControlName="title" required>
           </mat-form-field>
-          <mat-form-field fxFlex>
-              <input matInput placeholder="date" formControlName="date" readonly>
+          <mat-form-field fxFlex fxFlexOffset="2">
+              <input matInput placeholder="date" formControlName="dateView" readonly>
             </mat-form-field>
-          <mat-form-field fxFlex>
+          <mat-form-field fxFlex fxFlexOffset="2">
             <mat-select placeholder="member" formControlName="member" required>
               <mat-option *ngFor="let member of members" [value]="member.name">{{ member.name }}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
-        <mat-form-field class="full-width">
+        <mat-form-field fxFlex>
             <textarea matInput formControlName="text" placeholder="text" required></textarea>
         </mat-form-field>
-        <div fxLayout="row">
-          <button fxFlex type="submit" class="full-width" mat-raised-button color="primary" [disabled]="noteForm.invalid">Save</button>
-        </div>
+        <button fxFlex type="submit" mat-raised-button color="primary" [disabled]="form.invalid">Save</button>
       </form>
     </mat-card-content>
   </mat-card>
-  <div fxFlex="10%" fxFlex.gt-xs="20%"></div>
 </div>
-<div fxLayout="row">
-  <div fxFlex="10%" fxFlex.gt-xs="20%"></div>
-  <div fxFlex fxLayout="column">
-    <mat-card class="card" *ngFor="let note of notes">
+<div fxLayout="row" fxLayoutAlign="center">
+  <div fxFlex="60" fxLayout="column">
+    <mat-card *ngFor="let note of notes">
       <mat-card-header>
         <mat-card-subtitle>{{ note.title }} - {{ note.member }}</mat-card-subtitle>
       </mat-card-header>
@@ -39,5 +34,4 @@
       </mat-card-content>
     </mat-card>
   </div>
-  <div fxFlex="10%" fxFlex.gt-xs="20%"></div>
 </div>

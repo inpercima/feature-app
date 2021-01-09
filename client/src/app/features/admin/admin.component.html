@@ -1,38 +1,34 @@
-<div fxLayout="row">
-  <div fxFlex="10%" fxFlex.gt-xs="20%"></div>
-  <mat-card fxFlex class="card">
+<div fxLayout="row" fxLayoutAlign="center">
+  <mat-card fxFlex="60">
     <mat-card-content>
-      <form [formGroup]="adminForm" (ngSubmit)="onSubmit()" novalidate>
+      <form fxLayout="column" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
         <div fxLayout="row" fxLayout.lt-md="column">
           <mat-form-field fxFlex>
             <input matInput placeholder="account name" formControlName="accountName" required>
           </mat-form-field>
-          <mat-form-field fxFlex>
+          <mat-form-field fxFlex fxFlexOffset="2">
               <input matInput placeholder="featured tag" formControlName="featuredTag" required>
             </mat-form-field>
-          <mat-form-field fxFlex>
+          <mat-form-field fxFlex fxFlexOffset="2">
             <input matInput placeholder="date tag" formControlName="dateTag" required>
           </mat-form-field>
-          <mat-form-field fxFlex>
-              <input matInput [matDatepicker]="picker" placeholder="start date" formControlName="startDate" required>
+          <mat-form-field fxFlex fxFlexOffset="2">
+              <input matInput [matDatepicker]="picker" placeholder="start date" formControlName="startDateView" required>
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker touchUi #picker></mat-datepicker>
             </mat-form-field>
         </div>
-        <mat-form-field class="full-width">
-          <input matInput placeholder="locations" formControlName="locations" required>
-        </mat-form-field>
-        <mat-form-field class="full-width">
-          <input matInput placeholder="photographer" formControlName="photographer" required>
-        </mat-form-field>
-        <mat-form-field class="full-width">
-          <input matInput placeholder="tags" formControlName="tags" required>
-        </mat-form-field>
-        <div fxLayout="row">
-          <button fxFlex type="submit" class="full-width" mat-raised-button color="primary" [disabled]="adminForm.invalid">Save</button>
-        </div>
+          <mat-form-field fxFlex>
+            <input matInput placeholder="locations" formControlName="locations" required>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <input matInput placeholder="photographer" formControlName="photographer" required>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <input matInput placeholder="tags" formControlName="tags" required>
+          </mat-form-field>
+        <button type="submit" mat-raised-button color="primary" [disabled]="form.invalid">Save</button>
       </form>
     </mat-card-content>
   </mat-card>
-  <div fxFlex="10%" fxFlex.gt-xs="20%"></div>
 </div>

@@ -1,52 +1,53 @@
 import { OverlayModule } from '@angular/cdk/overlay';
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { JwtModule } from '@auth0/angular-jwt';
+
+import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppRoutingPipe } from './app-routing.pipe';
-import { CoreModule } from './core/core.module';
+import { AuthModule } from './auth/auth.module';
+import { StorageService } from './core/storage.service';
 import { FeaturesModule } from './features/features.module';
-import { LoginModule } from './login/login.module';
-import { NotFoundModule } from './not-found/not-found.module';
+import { MaterialModule } from './shared/material/material.module';
 
-export function getToken() {
-  return localStorage.getItem('access_token');
+export function jwtOptionsFactory(storageService: any): any {
+  return {
+    tokenGetter: () => {
+      return storageService.getToken();
+    },
+    allowedDomains: ['localhost:8080'],
+    disallowedRoutes: [
+      /http:\/\/localhost:8080\/api\/auth\/*/,
+    ],
+  };
 }
 
 @NgModule({
-  bootstrap: [
-    AppComponent,
-  ],
   declarations: [
     AppComponent,
     AppRoutingPipe,
   ],
   imports: [
-    AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
-    CoreModule,
-    FeaturesModule,
-    HttpClientModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: getToken,
-        whitelistedDomains: ['localhost'],
-      }
-    }),
-    LoginModule,
     FlexLayoutModule,
-    MatTabsModule,
-    MatToolbarModule,
-    NotFoundModule,
+    JwtModule.forRoot({
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory,
+        deps: [StorageService],
+      },
+    }),
     OverlayModule,
+    AppRoutingModule,
+    MaterialModule,
+    AuthModule,
+    FeaturesModule,
   ],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { PostService } from './post.service';
+import { InstagramService } from 'src/app/core/instagram.service';
 
 @Component({
   selector: 'fa-post',
@@ -11,21 +13,27 @@ import { PostService } from './post.service';
 })
 export class PostComponent implements OnInit {
 
-  public displayedColumns: string[] = ['date', 'photographer'];
+  displayedColumns: string[] = ['date', 'photographer'];
 
-  public dataSource = new MatTableDataSource();
+  dataSource = new MatTableDataSource();
 
-  constructor(private postService: PostService) { }
+  form = this.formBuilder.group({
+    filter: ['']
+  });
 
-  @ViewChild(MatSort, { static: false }) sort: MatSort;
+  constructor(private formBuilder: FormBuilder, private postService: PostService, private instagramService: InstagramService) { }
 
-  ngOnInit() {
-    this.postService.list().subscribe(data => this.dataSource.data = data);
-    this.dataSource.sort = this.sort;
+  @ViewChild(MatSort, { static: false }) sort!: MatSort;
+
+  ngOnInit(): void {
+    this.postService.list().subscribe(data => {
+      this.dataSource.data = data;
+      this.dataSource.sort = this.sort;
+    });
   }
 
-  applyFilter(filterValue: string) {
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
 }

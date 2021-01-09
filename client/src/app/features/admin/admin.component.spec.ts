@@ -1,18 +1,17 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { MatDatepickerModule, MatCardModule, MatSnackBarModule, MatNativeDateModule, MatInputModule } from '@angular/material';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import {  ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AdminComponent } from './admin.component';
-import { AdminService } from './admin.service';
+import { MaterialModule } from 'src/app/shared/material/material.module';
+import { MemberService } from '../member/member.service';
 
 describe('AdminComponent', () => {
   let component: AdminComponent;
   let fixture: ComponentFixture<AdminComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
         AdminComponent,
@@ -20,20 +19,15 @@ describe('AdminComponent', () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
-        MatCardModule,
-        MatDatepickerModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatNativeDateModule,
-        MatSnackBarModule,
         ReactiveFormsModule,
+        MaterialModule,
       ],
       providers: [
-        AdminService,
+        MemberService,
       ],
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AdminComponent);

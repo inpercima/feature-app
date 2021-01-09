@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -11,21 +12,27 @@ import { MemberService } from './member.service';
 })
 export class MemberComponent implements OnInit {
 
-  protected displayedColumns: string[] = ['name', 'username'];
+  displayedColumns: string[] = ['name', 'username'];
 
-  protected dataSource = new MatTableDataSource();
+  dataSource = new MatTableDataSource();
 
-  constructor(private memberService: MemberService) { }
+  form = this.formBuilder.group({
+    filter: ['']
+  });
 
-  @ViewChild(MatSort, { static: false }) sort: MatSort;
+  constructor(private formBuilder: FormBuilder, private memberService: MemberService) { }
 
-  ngOnInit() {
-    this.memberService.list().subscribe(data => this.dataSource.data = data);
-    this.dataSource.sort = this.sort;
+  @ViewChild(MatSort) sort!: MatSort;
+
+  ngOnInit(): void {
+    this.memberService.list().subscribe(data => {
+      this.dataSource.data = data;
+      this.dataSource.sort = this.sort;
+    });
   }
 
-  applyFilter(filterValue: string) {
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
 }

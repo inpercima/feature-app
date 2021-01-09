@@ -15,47 +15,39 @@ import { Note } from './note';
 })
 export class NoteComponent implements OnInit {
 
-  protected members: Member[];
-
-  protected noteForm: FormGroup;
-
-  protected notes: Note[];
+  members!: Member[];
 
   private datePipe = new DatePipe('en-US');
 
   private now = this.datePipe.transform(Date.now(), 'MM/dd/yyyy');
 
+  form = this.formBuilder.group({
+    member: ['', Validators.required],
+    title: ['', Validators.required],
+    text: ['', Validators.required],
+    date: [this.now, Validators.required],
+    dateView: [this.now, Validators.required],
+  });
+
+  notes!: Note[];
+
   constructor(private formBuilder: FormBuilder, private noteService: NoteService, private memberService: MemberService,
               private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.noteForm = this.formBuilder.group({
-      member: ['', Validators.required],
-      title: ['', Validators.required],
-      text: ['', Validators.required],
-      date: [this.now, Validators.required],
-    });
-
     this.memberService.list().subscribe(result => this.members = result);
     this.loadNotes();
   }
 
-  onSubmit() {
-    this.noteForm.get('date').setValue(this.datePipe.transform(this.noteForm.get('date').value, 'yyyy-MM-dd'));
-    this.noteService.save(this.noteForm).subscribe(() => {
-      this.noteForm.get('date').setValue(this.now);
+  onSubmit(): void {
+    this.form.patchValue({ date: this.datePipe.transform(this.form.value.date, 'yyyy-MM-dd') });
+    this.noteService.save(this.form.value).subscribe(() => {
       this.loadNotes();
-      this.openSnackBar();
+      this.snackBar.open('saved', '', { duration: 2000 });
     });
   }
 
-  openSnackBar() {
-    this.snackBar.open('saved', '', {
-      duration: 2000,
-    });
-  }
-
-  private loadNotes() {
+  private loadNotes(): void {
     this.noteService.list().subscribe(result => this.notes = result);
   }
 }
