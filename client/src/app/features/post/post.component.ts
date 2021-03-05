@@ -4,7 +4,6 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { PostService } from './post.service';
-import { InstagramService } from 'src/app/core/instagram.service';
 
 @Component({
   selector: 'fa-post',
@@ -21,7 +20,7 @@ export class PostComponent implements OnInit {
     filter: ['']
   });
 
-  constructor(private formBuilder: FormBuilder, private postService: PostService, private instagramService: InstagramService) { }
+  constructor(private formBuilder: FormBuilder, private postService: PostService) { }
 
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
 

@@ -21,7 +21,12 @@ switch ($_SERVER['REQUEST_METHOD']) {
     echo $postService->delete();
     break;
   case 'POST':
-    echo $postService->save(json_decode(file_get_contents('php://input')));
+    $input = file_get_contents('php://input');
+    if (isset($_SERVER['PATH_INFO'])) {
+      echo $postService->saveOne($input);
+    } else {
+      echo $postService->save(json_decode($input));
+    }
     break;
 }
 ?>
