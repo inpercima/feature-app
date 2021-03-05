@@ -22,6 +22,10 @@ export class PostService {
     return this.http.post<boolean>(`${environment.api}post`, posts);
   }
 
+  saveOne(username: string): Observable<boolean> {
+    return this.http.post<boolean>(`${environment.api}post.php/saveOne`, username);
+  }
+
   delete(): Observable<any> {
     return this.http.delete(`${environment.api}post`);
   }
