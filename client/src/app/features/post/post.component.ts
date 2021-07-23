@@ -8,7 +8,7 @@ import { PostService } from './post.service';
 @Component({
   selector: 'fa-post',
   templateUrl: './post.component.html',
-  styles: ['./post.component.css'],
+  styleUrls: ['./post.component.css'],
 })
 export class PostComponent implements OnInit {
 

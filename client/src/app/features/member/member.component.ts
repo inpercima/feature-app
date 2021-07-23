@@ -8,7 +8,7 @@ import { MemberService } from './member.service';
 @Component({
   selector: 'fa-member',
   templateUrl: './member.component.html',
-  styles: ['./member.component.css'],
+  styleUrls: ['./member.component.css'],
 })
 export class MemberComponent implements OnInit {
 
