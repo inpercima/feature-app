@@ -39,25 +39,29 @@ class PostService {
   }
 
   public function save($posts) {
-    $mysqlService = new MysqlService();
     foreach ($posts as $post) {
       $date = date('Y-m-d', strtotime($post->date));
-      $result = $mysqlService->select('COUNT(*) AS `count`', 'post', "WHERE `date` = {$date}");
-
-      //$stmt->rowCount() funktioniert nicht auf mysql bzw. ist nicht garantiert
-      if ($result[0]['count'] == 0) {
-        $this->prepareSave($date, $post->photographer);
-      }
+      $this->prepareSave($date, $post->photographer);
     }
     return json_encode(true);
   }
 
   private function prepareSave($date, $photographer) {
     $mysqlService = new MysqlService();
-    $stmt = $mysqlService->prepareInsert('`date`, `photographer`', ':date, :photographer', 'post');
-    $stmt->bindParam(':date', $date);
-    $stmt->bindParam(':photographer', $photographer);
-    $stmt->execute();
+    $result = $mysqlService->select('COUNT(*) AS `count`', 'post', "WHERE `date` = '{$date}'");
+
+    //$stmt->rowCount() funktioniert nicht auf mysql bzw. ist nicht garantiert
+    if ($result[0]['count'] == 0) {
+      $stmt = $mysqlService->prepareInsert('`date`, `photographer`', ':date, :photographer', 'post');
+      $stmt->bindParam(':date', $date);
+      $stmt->bindParam(':photographer', $photographer);
+      $stmt->execute();
+    } else {
+      $stmt = $mysqlService->prepareUpdate('`photographer` = :photographer WHERE `date` = :date', 'post');
+      $stmt->bindParam(':date', $date);
+      $stmt->bindParam(':photographer', $photographer);
+      $stmt->execute();
+    }
   }
 }
 ?>

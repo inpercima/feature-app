@@ -55,7 +55,7 @@ Powered by | T H E  .  H U B
 
 #{{ admin.dateTag }}{{ date | date: 'yyyy' }} #instagramersofthemonth_{{ date | date: 'MMMM' | lowercase }} #igd{{ date | date: 'MMddyy' }}</textarea>
         </mat-form-field>
-        <button mat-raised-button color="primary" (click)="copy()">create feature & copy to clipboard</button>
+        <button mat-raised-button color="primary" (click)="copy()" [disabled]="emptyPhotographer()">create feature & copy to clipboard</button>
       </form>
     </mat-card-content>
   </mat-card>

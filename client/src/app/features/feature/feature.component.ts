@@ -72,4 +72,8 @@ export class FeatureComponent implements OnInit {
       return this.featureService.checkUser(control.value).pipe(map(value => value.length ? { featured: true } : null));
     };
   }
+
+  emptyPhotographer(): boolean {
+    return this.form.value.photographer.trim().length === 0;
+  }
 }
