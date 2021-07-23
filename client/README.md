@@ -1,7 +1,7 @@
 # feature-app - client
 
-[![dependencies Status](https://david-dm.org/inpercima/feature-app/status.svg?path=client)](https://david-dm.org/inpercima/feature-app?path=client)
-[![devDependencies Status](https://david-dm.org/inpercima/feature-app/dev-status.svg?path=client)](https://david-dm.org/inpercima/feature-app?path=client&type=dev)
+[![dependencies Status](https://status.david-dm.org/gh/inpercima/feature-app.svg?path=client)](https://david-dm.org/inpercima/feature-app?path=client)
+[![devDependencies Status](https://status.david-dm.org/gh/inpercima/feature-app.svg?path=client&type=dev)](https://david-dm.org/inpercima/feature-app?path=client&type=dev)
 
 ## Getting started
 
@@ -85,7 +85,6 @@ Change for prodMode the option `production` to `true` and for mockMode the optio
 ### Table of contents
 
 * [api](#api)
-* [apiSuffix](#apiSuffix)
 * [appname](#appname)
 * [defaultRoute](#defaultRoute)
 * [production](#production)
@@ -96,13 +95,6 @@ Change for prodMode the option `production` to `true` and for mockMode the optio
 Defines the URL to the backend.
 
 * default: `./api/`
-* type: `string`
-
-### `apiSuffix`
-
-Defines a suffix for the api to the backend.
-
-* default: EMPTY
 * type: `string`
 
 ### `appname`
