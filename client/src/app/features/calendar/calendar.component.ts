@@ -11,7 +11,7 @@ import { CalendarDialogComponent } from './calendar-dialog/calendar-dialog.compo
 @Component({
   selector: 'fa-calendar',
   templateUrl: './calendar.component.html',
-  styles: ['./calendar.component.css'],
+  styleUrls: ['./calendar.component.css'],
 })
 
 export class CalendarComponent implements OnInit {
