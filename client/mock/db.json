@@ -3,7 +3,7 @@
     "accountName": "instagram",
     "featuredTag": "igers",
     "dateTag": "universe",
-    "locations": "London,Berlin,Rom,Paris",
+    "locations": "London,Berlin,Rom,Paris,Oslo",
     "photographer": "Brian_on_instagram,steve_photos,jason_germany_photo",
     "tags": "#mytag #myothertag #instagramtag #ig_tag #ig_tag_two",
     "startDate": "2017-09-02"
@@ -11,38 +11,41 @@
   "calendar": [
     {
       "id": 1,
-      "date": "Samstag, 01.12.2018",
-      "representativeMember": "Brian"
+      "date": "2021-07-23",
+      "representativeMember": "InstaBrian"
     }
   ],
-  "member": [
+  "user": [
     {
       "id": 1,
       "name": "Jason",
-      "username": "instaJason"
+      "username": "instaJason",
+      "password": "$2y$10$vsyuZDwhUervhRWrEwM1KeiaPCASukQNkfL/qki00CRLbjqphJI1y"
     },
     {
       "id": 2,
-      "name": "Brian",
-      "username": "instaBrian"
+      "name": "Steve",
+      "username": "instaSteve",
+      "password": "$2y$10$9qpHuo2HBDLttXKkVsKJjOonN49ICrEMw0pdKGRIj5Iw6LTKUxYTO"
     },
     {
       "id": 3,
-      "name": "Steve",
-      "username": "instaSteve"
+      "name": "Brian",
+      "username": "instaBrian",
+      "password": "$2y$10$kaR2eCKuZEo1Qwm5idkEJe422ztU32mvJC4FrSs/MEw4AmIKoaKTC"
     }
   ],
   "note": [
     {
       "id": 1,
-      "date": "2018-11-17",
+      "date": "2021-06-01",
       "member": "Steve",
       "title": "first note",
       "text": "This is a simple note."
     },
     {
       "id": 2,
-      "date": "2018-11-17",
+      "date": "2021-06-02",
       "member": "Brian",
       "title": "easy way",
       "text": "Another note to show how easy this is."
@@ -51,25 +54,18 @@
   "post": [
     {
       "id": 1,
-      "date": "2018-11-05",
-      "photographer": "instagram"
+      "date": "2021-06-01",
+      "photographer": "ig_italy"
     },
     {
       "id": 2,
-      "date": "2018-11-06",
-      "photographer": "ig_leipzig"
+      "date": "2021-06-02",
+      "photographer": "ig_deutschland"
     },
     {
       "id": 3,
-      "date": "2018-11-07",
-      "photographer": "ig_deutschland"
-    }
-  ],
-  "user": [
-    {
-      "id": 1,
-      "username": "feature-app",
-      "password": "feature-app"
+      "date": "2021-06-03",
+      "photographer": "ig_leipzig"
     }
   ]
 }

@@ -19,6 +19,7 @@ This project was generated with [swaaplate](https://github.com/inpercima/swaapla
 
 * `Apache 2.4` or higher
 * `php 7.3` or higher
+* `MySQL 5.7` or higher
 
 ### Node, npm or yarn
 

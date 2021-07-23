@@ -68,3 +68,7 @@ Defines the user for the database.
 
 * default: EMPTY
 * type: `string`
+
+## Integration
+
+To use MySQL you need to import the script under `resources/fa_demo.sql` in your database.
