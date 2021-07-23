@@ -11,6 +11,7 @@ import { AdminService } from '../admin/admin.service';
 import { FeatureService } from './feature.service';
 import { Member } from '../member/member';
 import { MemberService } from '../member/member.service';
+import { PostService } from '../post/post.service';
 
 @Component({
   selector: 'fa-feature',
@@ -20,7 +21,8 @@ import { MemberService } from '../member/member.service';
 export class FeatureComponent implements OnInit {
 
   constructor(private clipboard: Clipboard, private formBuilder: FormBuilder, private snackBar: MatSnackBar,
-              private adminService: AdminService, private memberService: MemberService, private featureService: FeatureService) { }
+              private adminService: AdminService, private memberService: MemberService, private featureService: FeatureService,
+              private postService: PostService) { }
 
   date!: Date;
 
@@ -60,6 +62,7 @@ export class FeatureComponent implements OnInit {
 
   copy(): void {
     this.clipboard.copy(document.querySelector('.featureText')?.innerHTML ?? '');
+    this.postService.saveOne(this.form.value.photographer).subscribe();
     this.snackBar.open('copied to clipboard', '', { duration: 2000 });
   }
 
@@ -68,5 +71,9 @@ export class FeatureComponent implements OnInit {
       // return null to show there is no error
       return this.featureService.checkUser(control.value).pipe(map(value => value.length ? { featured: true } : null));
     };
+  }
+
+  emptyPhotographer(): boolean {
+    return this.form.value.photographer.trim().length === 0;
   }
 }
