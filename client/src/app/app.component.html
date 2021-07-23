@@ -1,16 +1,15 @@
-<div>
-  <mat-toolbar color="primary" class="mat-elevation-z4">
-    {{ appname }}
-  </mat-toolbar>
-  <nav mat-tab-nav-bar>
-    <a mat-tab-link fxFlex
-      *ngFor="let routeLink of routes | appRouting"
-      [routerLink]="routeLink.path"
-      routerLinkActive #rla="routerLinkActive"
-      [active]="rla.isActive">
-      <span fxShow fxHide.xs="true">{{ routeLink.path }}</span>
-      <span fxHide.gt-xs="true">{{ routeLink.path | slice:0:3 }}</span>
-    </a>
-  </nav>
-  <router-outlet></router-outlet>
-</div>
+
+<mat-toolbar color="primary" class="mat-elevation-z4">
+  {{ appname }}
+</mat-toolbar>
+<nav mat-tab-nav-bar>
+  <a mat-tab-link fxFlex
+    *ngFor="let routeLink of routes | appRouting"
+    [routerLink]="routeLink.path"
+    routerLinkActive #rla="routerLinkActive"
+    [active]="rla.isActive">
+    <span fxShow fxHide.xs="true">{{ routeLink.path }}</span>
+    <span fxHide.gt-xs="true">{{ routeLink.path | slice:0:3 }}</span>
+  </a>
+</nav>
+<router-outlet></router-outlet>

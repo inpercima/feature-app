@@ -4,9 +4,8 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-import { Admin } from './admin';
-
 import { environment } from '../../../environments/environment';
+import { Admin } from './admin';
 
 @Injectable({
   providedIn: 'root'

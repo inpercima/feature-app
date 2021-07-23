@@ -16,7 +16,6 @@ import { PostService } from '../post/post.service';
 @Component({
   selector: 'fa-feature',
   templateUrl: './feature.component.html',
-  styles: ['./feature.component.css'],
 })
 export class FeatureComponent implements OnInit {
 

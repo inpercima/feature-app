@@ -2,7 +2,10 @@
 
 [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
 
-Administrate and manage features on an account like ig_* on instagram.
+Administrate and manage features on an account like ig_* on Instagram.
+
+This app is online under [feature-app.inpercima.net](http://feature-app.inpercima.net).
+Use `instaSteve` as username and password.
 
 This project was generated with [swaaplate](https://github.com/inpercima/swaaplate) version 2.3.1.
 

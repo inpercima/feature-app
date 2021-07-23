@@ -31,7 +31,7 @@
   },
   "general": {
     "author": "Marcel Jänicke",
-    "description": "Administrate and manage features on an account like ig_* on instagram.",
+    "description": "Administrate and manage features on an account like ig_* on Instagram.",
     "modRewriteIndex": true,
     "name": "feature-app",
     "title": "feature-app",
