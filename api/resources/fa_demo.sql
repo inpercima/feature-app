@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Erstellungszeit: 10. Jan 2019 um 17:40
+-- Erstellungszeit: 23. Jul 2021 um 09:39
 -- Server-Version: 5.7.23
 -- PHP-Version: 7.2.8
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Datenbank: `fa_demo`
 --
-CREATE DATABASE IF NOT EXISTS `fa_demo` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `fa_demo`;
 
 -- --------------------------------------------------------
 
@@ -31,7 +29,6 @@ USE `fa_demo`;
 --
 
 CREATE TABLE `fa_admin` (
-  `id` int(1) NOT NULL,
   `accountName` varchar(50) NOT NULL,
   `featuredTag` varchar(50) NOT NULL,
   `dateTag` varchar(50) NOT NULL,
@@ -39,14 +36,14 @@ CREATE TABLE `fa_admin` (
   `photographer` varchar(2000) NOT NULL,
   `tags` varchar(2000) NOT NULL,
   `startDate` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Daten für Tabelle `fa_admin`
 --
 
-INSERT INTO `fa_admin` (`id`, `accountName`, `featuredTag`, `dateTag`, `locations`, `photographer`, `tags`, `startDate`) VALUES
-(1, 'instagram', 'igers', 'universe', 'London,Berlin,Rom,Paris,Oslo', 'Brian_on_instagram,steve_photos,jason_germany_photo', '#mytag #myothertag #instagramtag #ig_tag #ig_tag_two', '2017-09-02');
+INSERT INTO `fa_admin` (`accountName`, `featuredTag`, `dateTag`, `locations`, `photographer`, `tags`, `startDate`) VALUES
+('instagram', 'igers', 'universe', 'London,Berlin,Rom,Paris,Oslo', 'Brian_on_instagram,steve_photos,jason_germany_photo', '#mytag #myothertag #instagramtag #ig_tag #ig_tag_two', '2017-09-02');
 
 -- --------------------------------------------------------
 
@@ -58,35 +55,14 @@ CREATE TABLE `fa_calendar` (
   `id` int(3) NOT NULL,
   `representativeMember` varchar(50) NOT NULL,
   `date` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Daten für Tabelle `fa_calendar`
 --
 
 INSERT INTO `fa_calendar` (`id`, `representativeMember`, `date`) VALUES
-(1, 'Brian', 'Samstag, 01.12.2018');
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `fa_member`
---
-
-CREATE TABLE `fa_member` (
-  `id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `username` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Daten für Tabelle `fa_member`
---
-
-INSERT INTO `fa_member` (`id`, `name`, `username`) VALUES
-(1, 'Jason', 'instaJason'),
-(2, 'Brian', 'instaBrian'),
-(3, 'Steve', 'instaSteve');
+(1, 'instaSteve', 'Monday, 06/07/2021');
 
 -- --------------------------------------------------------
 
@@ -97,18 +73,18 @@ INSERT INTO `fa_member` (`id`, `name`, `username`) VALUES
 CREATE TABLE `fa_note` (
   `id` int(3) NOT NULL,
   `member` varchar(50) NOT NULL,
-  `text` text NOT NULL,
+  `text` mediumtext NOT NULL,
   `title` varchar(100) NOT NULL,
   `date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Daten für Tabelle `fa_note`
 --
 
 INSERT INTO `fa_note` (`id`, `member`, `text`, `title`, `date`) VALUES
-(1, 'Steve', 'This is a simple note.', 'first note', '2018-11-17'),
-(2, 'Brian', 'Another note to show how easy this is.', 'easy way', '2018-11-17');
+(1, 'Steve', 'This is a simple note.', 'first note', '2021-06-01'),
+(2, 'Brian', 'Another note to show how easy this is.', 'easy way', '2021-06-02');
 
 -- --------------------------------------------------------
 
@@ -120,37 +96,47 @@ CREATE TABLE `fa_post` (
   `id` int(3) NOT NULL,
   `date` date NOT NULL,
   `photographer` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Daten für Tabelle `fa_post`
 --
 
 INSERT INTO `fa_post` (`id`, `date`, `photographer`) VALUES
-(1, '2018-11-05', 'instagram'),
-(2, '2018-11-06', 'ig_leipzig'),
-(3, '2018-11-07', 'ig_deutschland');
+(1, '2021-06-01', 'ig_italy'),
+(2, '2021-06-02', 'ig_deutschland'),
+(3, '2021-06-03', 'ig_leipzig');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `fa_user`
+--
+
+CREATE TABLE `fa_user` (
+  `id` int(3) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Daten für Tabelle `fa_user`
+--
+
+INSERT INTO `fa_user` (`id`, `username`, `password`, `name`) VALUES
+(1, 'instaJason', '$2y$10$vsyuZDwhUervhRWrEwM1KeiaPCASukQNkfL/qki00CRLbjqphJI1y', 'Jason'),
+(2, 'instaSteve', '$2y$10$9qpHuo2HBDLttXKkVsKJjOonN49ICrEMw0pdKGRIj5Iw6LTKUxYTO', 'Steve'),
+(3, 'instaBrian', '$2y$10$kaR2eCKuZEo1Qwm5idkEJe422ztU32mvJC4FrSs/MEw4AmIKoaKTC', 'Brian');
 
 --
 -- Indizes der exportierten Tabellen
 --
 
 --
--- Indizes für die Tabelle `fa_admin`
---
-ALTER TABLE `fa_admin`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indizes für die Tabelle `fa_calendar`
 --
 ALTER TABLE `fa_calendar`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indizes für die Tabelle `fa_member`
---
-ALTER TABLE `fa_member`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -166,14 +152,14 @@ ALTER TABLE `fa_post`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT für exportierte Tabellen
+-- Indizes für die Tabelle `fa_user`
 --
+ALTER TABLE `fa_user`
+  ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT für Tabelle `fa_admin`
+-- AUTO_INCREMENT für exportierte Tabellen
 --
-ALTER TABLE `fa_admin`
-  MODIFY `id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT für Tabelle `fa_calendar`
@@ -182,21 +168,21 @@ ALTER TABLE `fa_calendar`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT für Tabelle `fa_member`
---
-ALTER TABLE `fa_member`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- AUTO_INCREMENT für Tabelle `fa_note`
 --
 ALTER TABLE `fa_note`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT für Tabelle `fa_post`
 --
 ALTER TABLE `fa_post`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT für Tabelle `fa_user`
+--
+ALTER TABLE `fa_user`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
