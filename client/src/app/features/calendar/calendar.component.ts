@@ -37,7 +37,7 @@ export class CalendarComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.calendarService.save(this.form.value).subscribe(response => this.checkCreation(response));
+    this.calendarService.save(this.form).subscribe(response => this.checkCreation(response));
   }
 
   createCalendar(): void {
@@ -56,7 +56,7 @@ export class CalendarComponent implements OnInit {
     this.form.patchValue({
       member: item.member,
       date: item.date,
-      representativeMember: ''
+      representativeMember: '',
     });
   }
 

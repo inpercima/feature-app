@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Erstellungszeit: 23. Jul 2021 um 09:39
+-- Erstellungszeit: 23. Jul 2021 um 11:49
 -- Server-Version: 5.7.23
 -- PHP-Version: 7.2.8
 
@@ -54,7 +54,7 @@ INSERT INTO `fa_admin` (`accountName`, `featuredTag`, `dateTag`, `locations`, `p
 CREATE TABLE `fa_calendar` (
   `id` int(3) NOT NULL,
   `representativeMember` varchar(50) NOT NULL,
-  `date` varchar(25) NOT NULL
+  `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -62,7 +62,7 @@ CREATE TABLE `fa_calendar` (
 --
 
 INSERT INTO `fa_calendar` (`id`, `representativeMember`, `date`) VALUES
-(1, 'instaSteve', 'Monday, 06/07/2021');
+(1, 'instaSteve', '2021-07-23');
 
 -- --------------------------------------------------------
 
@@ -171,7 +171,7 @@ ALTER TABLE `fa_calendar`
 -- AUTO_INCREMENT für Tabelle `fa_note`
 --
 ALTER TABLE `fa_note`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT für Tabelle `fa_post`

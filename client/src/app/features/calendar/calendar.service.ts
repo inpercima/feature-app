@@ -1,5 +1,7 @@
+import { formatDate } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -39,7 +41,7 @@ export class CalendarService {
             calendarDate = this.updateDate(calendarDate);
             if (response.length) {
               response.forEach(value => {
-                if (value.date === item.date) {
+                if (item.date.includes(formatDate(value.date, 'MM/dd/yyyy', 'en-US'))) {
                   item.id = value.id;
                   item.isChanged = true;
                   item.representativeMember = value.representativeMember;
@@ -99,8 +101,9 @@ export class CalendarService {
     return new Date(newDate.getTime() + (date.getTimezoneOffset() < newDate.getTimezoneOffset() ? 7200000 : 0));
   }
 
-  public save(form: any): Observable<boolean> {
-    return this.http.post<boolean>(`${environment.api}calendar`, form).pipe(map(response => response !== null && response));
+  public save(form: FormGroup): Observable<boolean> {
+    form.get('date')?.setValue(formatDate(form.value.date, 'yyyy-MM-dd', 'en-US'));
+    return this.http.post<boolean>(`${environment.api}calendar`, form.value).pipe(map(response => response !== null && response));
   }
 
   public revert(id: number): Observable<boolean> {

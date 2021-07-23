@@ -48,6 +48,8 @@ export function jwtOptionsFactory(storageService: any): any {
     AuthModule,
     FeaturesModule,
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [
+    AppComponent,
+  ],
 })
 export class AppModule { }
