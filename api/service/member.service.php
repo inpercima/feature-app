@@ -10,7 +10,7 @@ class MemberService {
 
   public function listAll() {
     $mysqlService = new MysqlService();
-    return json_encode($mysqlService->select('*', 'user', "WHERE `username` NOT IN ('ig_leipzig') ORDER BY `username` ASC"));
+    return json_encode($mysqlService->select('*', 'user', "ORDER BY `username` ASC"));
   }
 }
 ?>
