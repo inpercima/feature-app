@@ -45,10 +45,10 @@ export class FeatureComponent implements OnInit {
     this.date = new Date();
     this.adminService.list().subscribe(admin => {
       this.admin = admin;
-      this.filteredPhotographer = this.form.controls.photographer.valueChanges.pipe(startWith(''), map(value => {
+      this.filteredPhotographer = this.form.controls['photographer'].valueChanges.pipe(startWith(''), map(value => {
         return this.admin.photographer.split(',').filter(photographer => photographer.toLowerCase().includes(value.toLowerCase()));
       }));
-      this.filteredLocations = this.form.controls.location.valueChanges.pipe(startWith(''), map(value => {
+      this.filteredLocations = this.form.controls['location'].valueChanges.pipe(startWith(''), map(value => {
         return this.admin.locations.split(',').filter(location => location.toLowerCase().includes(value.toLowerCase()));
       }));
       this.memberService.list().subscribe(members => {

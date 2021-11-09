@@ -8,7 +8,7 @@
             <mat-autocomplete #autocompletePhotographer="matAutocomplete">
               <mat-option *ngFor="let photographer of filteredPhotographer | async" [value]="photographer">{{ photographer }}</mat-option>
             </mat-autocomplete>
-            <mat-error *ngIf="form.controls.photographer.hasError('featured')">The user is used in last 60 posts</mat-error>
+            <mat-error *ngIf="form.controls['photographer'].hasError('featured')">The user is used in last 60 posts</mat-error>
           </mat-form-field>
           <mat-form-field fxFlex fxFlexOffset="2">
             <input matInput placeholder="location" formControlName="location" [matAutocomplete]="autocompleteLocation">
