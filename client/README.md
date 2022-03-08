@@ -1,8 +1,5 @@
 # feature-app - client
 
-[![dependencies Status](https://status.david-dm.org/gh/inpercima/feature-app.svg?path=client)](https://david-dm.org/inpercima/feature-app?path=client)
-[![devDependencies Status](https://status.david-dm.org/gh/inpercima/feature-app.svg?path=client&type=dev)](https://david-dm.org/inpercima/feature-app?path=client&type=dev)
-
 ## Getting started
 
 ```bash
