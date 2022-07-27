@@ -7,13 +7,13 @@ Administrate and manage features on an account like ig_* on Instagram.
 This app is online under [feature-app.inpercima.net](http://feature-app.inpercima.net).
 Use `instaSteve` as username and password.
 
-This project was generated with [swaaplate](https://github.com/inpercima/swaaplate) version 2.3.1.
+This project was generated with [swaaplate](https://github.com/inpercima/swaaplate) version 2.3.7.
 
 ## Prerequisites
 
 ### Angular CLI
 
-* `angular-cli 14.0.0` or higher
+* `angular-cli 14.1.0` or higher
 
 ### Apache and php
 
@@ -23,9 +23,9 @@ This project was generated with [swaaplate](https://github.com/inpercima/swaapla
 
 ### Node, npm or yarn
 
-* `node 16.13.0` or higher in combination with
-  * `npm 8.12.1` or higher or
-  * `yarn 1.22.17` or higher, used in this repository
+* `node 16.16.0` or higher in combination with
+  * `npm 8.12.2` or higher or
+  * `yarn 1.22.19` or higher, used in this repository
 
 ## Getting started
 

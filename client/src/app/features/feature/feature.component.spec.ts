@@ -12,8 +12,8 @@ describe('FeatureComponent', () => {
   let component: FeatureComponent;
   let fixture: ComponentFixture<FeatureComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       declarations: [
         FeatureComponent,
       ],
@@ -28,9 +28,7 @@ describe('FeatureComponent', () => {
       ],
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(FeatureComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
