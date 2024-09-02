@@ -39,6 +39,6 @@ cd feature-app
 
 ### Modules
 
-For the client check [feature-app - client](./client).
+For the frontend check [feature-app - frontend](./frontend).
 
 For the server check [feature-app - api](./api).
