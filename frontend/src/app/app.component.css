@@ -4,10 +4,13 @@ body {
   overflow-y: scroll;
 }
 
-.mat-card {
+mat-card {
   margin-top: 20px;
 }
 
-.featureText {
-  height: 600px !important;
+.github-link {
+  height: 20px;
+  top: 4px;
+  padding-right: 5px;
+  position: relative;
 }
