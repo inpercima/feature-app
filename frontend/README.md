@@ -10,7 +10,7 @@ cd frontend
 yarn
 ```
 
-Create environment files for `devMode`, `mockMode` and `prodMode`.
+Create environment files for `development mode` and `production mode`.
 
 ```bash
 cp src/environments/environment.ts src/environments/environment.dev.ts
@@ -28,7 +28,7 @@ It is recommanded to use a server to get full access of all angular.
 You can do this for example with `yarn serve:mock`.
 For the other options your app should run on a server which you like.
 
-### Run in devMode
+### Run in development mode
 
 If you want to work with mock data, start the mock in a separate terminal, reachable on [http://localhost:3000/](http://localhost:3000/).
 
@@ -57,7 +57,7 @@ yarn watch:mock
 ### Package
 
 ```bash
-# build in prodMode, compressed
+# build in production mode, compressed
 yarn build:prod
 ```
 
@@ -76,14 +76,14 @@ ng e2e
 ### General
 
 All options have to been set in the environment files but some of them do not need to be changed.
-All defaults refer to the environment file (`environment.ts`), they are prepared in devMode (`environment.dev.ts`).
-Change for prodMode the option `production` to `true` and for mockMode the option `api` to `http://localhost:3000/`.
+All defaults refer to the environment file (`environment.ts`), they are prepared in `development mode` (`environment.dev.ts`).
+Change for `production mode` the option `production` to `true` and for `mock mode` the option `api` to `http://localhost:3000/`.
 
 ### Table of contents
 
 * [api](#api)
 * [appname](#appname)
-* [defaultRoute](#defaultRoute)
+* [defaultRoute](#defaultroute)
 * [production](#production)
 * [theme](#theme)
 
