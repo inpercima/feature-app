@@ -13,19 +13,19 @@ This project was generated with [swaaplate](https://github.com/inpercima/swaapla
 
 ### Angular CLI
 
-* `angular-cli 14.1.0` or higher
+* `@angular/cli 18.2.2` or higher
 
 ### Apache and php
 
 * `Apache 2.4` or higher
-* `php 7.4` or higher
+* `php 8.1` or higher
 * `MySQL 5.7` or higher
 
 ### Node, npm or yarn
 
-* `node 16.16.0` or higher in combination with
-  * `npm 8.12.2` or higher or
-  * `yarn 1.22.19` or higher, used in this repository
+* `node 20.15.1` or higher in combination with
+  * `npm 10.7.0` or higher or
+  * `yarn 1.22.22` or higher, used in this repository
 
 ## Getting started
 
@@ -41,4 +41,6 @@ cd feature-app
 
 For the frontend check [feature-app - frontend](./frontend).
 
-For the server check [feature-app - api](./api).
+For the backend check [feature-app - api](./api).
+
+For the docker check [publicmedia - docker](./README_docker.md).
