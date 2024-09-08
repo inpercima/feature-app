@@ -7,7 +7,7 @@
 cd frontend
 
 # install tools and frontend dependencies
-yarn
+pnpm install
 ```
 
 Create environment files for `development mode` and `production mode`.
@@ -34,31 +34,26 @@ If you want to work with mock data, start the mock in a separate terminal, reach
 
 ```bash
 # mock, separate terminal
-yarn run:mock
+pnpm run:mock
 ```
 
 ```bash
 # build, reachable on http://localhost/app/path/to/dist/
-yarn build:dev
+pnpm build:dev
 # with mock
-yarn build:mock
+pnpm build:mock
 
 # build and starts a server, rebuild after changes, reachable on http://localhost:4200/
-yarn serve:dev
+pnpm serve:dev
 # with mock
-yarn serve:mock
-
-# build, rebuild after changes, reachable on http://localhost/app/path/to/dist/
-yarn watch:dev
-# with mock
-yarn watch:mock
+pnpm serve:mock
 ```
 
 ### Package
 
 ```bash
 # build in production mode, compressed
-yarn build:prod
+pnpm build:prod
 ```
 
 ### Tests
